@@ -32,6 +32,8 @@ This is an initial shape, not a theorem assumption. Change it when the problem r
 5. Let the optimizer search among valid candidates.
 6. Inspect the final preview rather than the initial coordinates.
 
+In fast mode, optimize only enough to remove obvious high-severity distractions; medium and low findings are advisory unless the preview is genuinely misleading. In strict mode, continue until undeclared medium- and high-severity findings are repaired or explicitly explained.
+
 For the canonical triangle, a useful search box is:
 
 ```json
@@ -64,8 +66,9 @@ Declare intended relations so they are allowlisted. Do not remove a visible obje
 - `structural`: genuinely forced by the construction, even if not listed.
 - `accidental`: looks true in the chosen layout but is not generally true.
 - `unresolved`: the symbolic engine could not decide.
+- `numeric-only`: detected numerically without symbolic classification, normally because fast mode intentionally skipped that expensive step.
 
-Always repair medium- or high-severity `accidental` and `unresolved` issues. Review low-severity issues manually. A structural relation may still be visually distracting; choose a different layout if it encourages an irrelevant solution path.
+In strict mode, always repair medium- or high-severity `accidental`, `unresolved`, and `numeric-only` issues. In fast mode, high-severity issues block delivery; review medium issues visually and do not chase low-severity noise. A structural relation may still be visually distracting; choose a different layout if it encourages an irrelevant solution path.
 
 ## Visual hierarchy
 

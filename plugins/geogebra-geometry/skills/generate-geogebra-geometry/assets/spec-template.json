@@ -1,4 +1,5 @@
 {
+  "mode": "fast",
   "title": "Triangle midline",
   "slug": "triangle-midline",
   "commands": [
@@ -86,7 +87,7 @@
     }
   ],
   "layout": {
-    "trials": 80,
+    "trials": 60,
     "seed": 20260717,
     "variables": {
       "B": {
@@ -131,9 +132,7 @@
     "dpi": 144
   },
   "audit": {
-    "enabled": true,
-    "symbolicFilter": true,
-    "failOnSeverity": "medium"
+    "enabled": true
   },
   "exports": {
     "ggb": true,

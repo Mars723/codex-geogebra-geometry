@@ -1,6 +1,17 @@
 {
   "successful": true,
   "title": "Triangle midline",
+  "mode": "fast",
+  "execution": {
+    "maxLayoutTrials": 120,
+    "requestedLayoutTrials": 60,
+    "effectiveLayoutTrials": 60,
+    "maxStatementProofs": 4,
+    "requestedStatementProofs": 1,
+    "casTimeoutMs": 12000,
+    "proofTimeoutMs": 12000,
+    "symbolicAccidentalRelationAudit": false
+  },
   "engine": {
     "version": "5.2.899.0",
     "module": "file:///Applications/GeoGebra%20Calculator%20Suite.app/Contents/Resources/app/html/web3d/web3d.nocache.mjs",
@@ -10,7 +21,7 @@
   "outputs": {
     "ggb": {
       "path": "examples/triangle-midline/triangle-midline.ggb",
-      "bytes": 4700
+      "bytes": 4701
     },
     "png": {
       "path": "examples/triangle-midline/triangle-midline.png",
@@ -26,7 +37,7 @@
     },
     "spec": {
       "path": "examples/triangle-midline/triangle-midline.spec.json",
-      "bytes": 4808
+      "bytes": 5105
     }
   },
   "commands": [
@@ -134,8 +145,8 @@
   "undefinedObjects": [],
   "layout": {
     "enabled": true,
-    "trials": 80,
-    "feasibleTrials": 77,
+    "trials": 60,
+    "feasibleTrials": 57,
     "initialScore": 0,
     "bestScore": 0,
     "coordinates": {

@@ -12,6 +12,13 @@ PLUGIN = ROOT / "plugins" / "geogebra-geometry"
 MANIFEST = PLUGIN / ".codex-plugin" / "plugin.json"
 MARKETPLACE = ROOT / ".agents" / "plugins" / "marketplace.json"
 SKILL = PLUGIN / "skills" / "generate-geogebra-geometry" / "SKILL.md"
+SPEC_TEMPLATE = (
+    PLUGIN
+    / "skills"
+    / "generate-geogebra-geometry"
+    / "assets"
+    / "spec-template.json"
+)
 EXAMPLE_GGB = ROOT / "examples" / "triangle-midline" / "triangle-midline.ggb"
 
 errors = []
@@ -27,6 +34,7 @@ def load_json(path):
 
 manifest = load_json(MANIFEST)
 marketplace = load_json(MARKETPLACE)
+spec_template = load_json(SPEC_TEMPLATE)
 
 for field in ("name", "version", "description", "author", "skills", "interface"):
     if field not in manifest:
@@ -85,6 +93,12 @@ else:
         errors.append("embedded skill name is incorrect")
     if not re.search(r"^description:\s*.+$", header, re.MULTILINE):
         errors.append("embedded skill description is missing")
+
+if "`fast`" not in skill_text or "`strict`" not in skill_text:
+    errors.append("embedded skill must document fast and strict modes")
+
+if spec_template.get("mode") != "fast":
+    errors.append("construction template must default to fast mode")
 
 for path in ROOT.rglob("*"):
     if not path.is_file() or ".git" in path.parts:

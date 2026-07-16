@@ -2,7 +2,7 @@
 
 Generate verified, importable GeoGebra `.ggb` constructions from geometry problem text, screenshots, or LaTeX.
 
-The plugin is designed for olympiad and competition geometry diagrams where the picture should be mathematically faithful without suggesting accidental relationships.
+The plugin is designed for olympiad and competition geometry diagrams. Version 0.2 adds a fast default path for normal work and a strict path for research-grade misleading-relation auditing.
 
 ![Triangle midline example](plugins/geogebra-geometry/assets/triangle-midline.png)
 
@@ -16,6 +16,15 @@ The plugin is designed for olympiad and competition geometry diagrams where the 
 - Searches valid coordinate layouts to avoid misleading diagrams.
 - Round-trip loads every generated `.ggb` before delivery.
 - Exports PNG, SVG, GeoGebra XML, and optional native TikZ.
+
+## Two modes
+
+| Mode | Best for | Audit behavior |
+| --- | --- | --- |
+| `fast` (default) | One-shot diagrams and normal iteration | Caps layout search at 120 trials, verifies central conclusions, scans all declared geometry numerically, and blocks high-severity misleading relations |
+| `strict` | Final publication, research, or exhaustive review | Caps layout search at 1,000 trials, symbolically classifies suspicious relations, and blocks medium- and high-severity findings |
+
+Fast mode still creates a real dynamic `.ggb`, verifies required objects and stated conclusions, reloads the exported file, and produces an audit report. It saves time and tokens by not trying to symbolically prove every accidental-looking relationship.
 
 ## Install from the marketplace
 
@@ -52,7 +61,7 @@ Use $generate-geogebra-geometry to turn this problem into a verified .ggb file.
 ```
 
 ```text
-Read this geometry screenshot, construct the diagram in GeoGebra, verify the stated conclusion, and check for accidental collinearity.
+Use $generate-geogebra-geometry in strict mode. Read this screenshot, verify the stated conclusion, and fully audit accidental collinearity and parallelism.
 ```
 
 Normal deliverables are:
@@ -91,6 +100,8 @@ The construction, theorem conclusion, and visual appearance are treated separate
 
 A numerically true statement is never reported as a symbolic proof.
 
+Fast mode performs the same construction and round-trip checks but leaves non-blocking suspicious relations as `numeric-only`. Strict mode sends suspicious relations through GeoGebra's symbolic prover and requires medium-severity issues to be resolved.
+
 ## Documentation
 
 - [Chinese research and implementation summary](docs/research-summary.zh-CN.md)
@@ -113,9 +124,12 @@ Build the included example:
 
 ```bash
 node plugins/geogebra-geometry/skills/generate-geogebra-geometry/scripts/build_geogebra.mjs \
+  --mode fast \
   --spec plugins/geogebra-geometry/skills/generate-geogebra-geometry/assets/spec-template.json \
   --out-dir /tmp/geogebra-example
 ```
+
+Run the same command with `--mode strict` before releasing changes that affect construction, proof, layout, or audit behavior.
 
 ## License
 
