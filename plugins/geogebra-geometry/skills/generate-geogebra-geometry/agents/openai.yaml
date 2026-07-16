@@ -1,0 +1,5 @@
+interface:
+  display_name: "GeoGebra Geometry Generator"
+  short_description: "Turn geometry problems into verified .ggb diagrams"
+  brand_color: "#234E7A"
+  default_prompt: "Use $generate-geogebra-geometry to turn this geometry problem into a verified GeoGebra file and preview."

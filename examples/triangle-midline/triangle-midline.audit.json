@@ -1,0 +1,472 @@
+{
+  "successful": true,
+  "title": "Triangle midline",
+  "engine": {
+    "version": "5.2.899.0",
+    "module": "file:///Applications/GeoGebra%20Calculator%20Suite.app/Contents/Resources/app/html/web3d/web3d.nocache.mjs",
+    "browser": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "casReady": true
+  },
+  "outputs": {
+    "ggb": {
+      "path": "examples/triangle-midline/triangle-midline.ggb",
+      "bytes": 4700
+    },
+    "png": {
+      "path": "examples/triangle-midline/triangle-midline.png",
+      "bytes": 127238
+    },
+    "svg": {
+      "path": "examples/triangle-midline/triangle-midline.svg",
+      "bytes": 8457
+    },
+    "xml": {
+      "path": "examples/triangle-midline/triangle-midline.geogebra.xml",
+      "bytes": 7537
+    },
+    "spec": {
+      "path": "examples/triangle-midline/triangle-midline.spec.json",
+      "bytes": 4808
+    }
+  },
+  "commands": [
+    {
+      "command": "A=(0,0)",
+      "ok": true,
+      "created": [
+        "A"
+      ],
+      "defined": [
+        "A"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "B=(2.4,4.6)",
+      "ok": true,
+      "created": [
+        "B"
+      ],
+      "defined": [
+        "B"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "C=(8,0)",
+      "ok": true,
+      "created": [
+        "C"
+      ],
+      "defined": [
+        "C"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "a=Segment(B,C)",
+      "ok": true,
+      "created": [
+        "a"
+      ],
+      "defined": [
+        "a"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "b=Segment(C,A)",
+      "ok": true,
+      "created": [
+        "b"
+      ],
+      "defined": [
+        "b"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "c=Segment(A,B)",
+      "ok": true,
+      "created": [
+        "c"
+      ],
+      "defined": [
+        "c"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "D=Midpoint(B,C)",
+      "ok": true,
+      "created": [
+        "D"
+      ],
+      "defined": [
+        "D"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "E=Midpoint(C,A)",
+      "ok": true,
+      "created": [
+        "E"
+      ],
+      "defined": [
+        "E"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "m=Segment(D,E)",
+      "ok": true,
+      "created": [
+        "m"
+      ],
+      "defined": [
+        "m"
+      ],
+      "undefined": []
+    }
+  ],
+  "missingObjects": [],
+  "undefinedObjects": [],
+  "layout": {
+    "enabled": true,
+    "trials": 80,
+    "feasibleTrials": 77,
+    "initialScore": 0,
+    "bestScore": 0,
+    "coordinates": {
+      "B": {
+        "x": 2.4,
+        "y": 4.6
+      }
+    }
+  },
+  "checks": [
+    {
+      "id": "D_on_BC",
+      "status": "construction",
+      "expression": "AreCollinear(B,D,C)",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "E_on_CA",
+      "status": "construction",
+      "expression": "AreCollinear(C,E,A)",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "D_is_midpoint",
+      "status": "construction",
+      "expression": "Distance(B,D)==Distance(D,C)",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "E_is_midpoint",
+      "status": "construction",
+      "expression": "Distance(C,E)==Distance(E,A)",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "midline_parallel",
+      "status": "conclusion",
+      "expression": "AreParallel(Line(A,B),Line(D,E))",
+      "expected": true,
+      "verify": "symbolic",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": "true",
+      "proofValue": "zzGgbGenProof7 = {true, {\"AreEqual[A,B]\"}}",
+      "passed": true
+    }
+  ],
+  "failedChecks": [],
+  "audit": {
+    "scale": 4,
+    "thresholds": {
+      "pointCrowding": 0.035,
+      "collinear": 0.025,
+      "parallelDegrees": 2,
+      "perpendicularDegrees": 2,
+      "equalLengthRelative": 0.02,
+      "equalAngleDegrees": 1.5,
+      "specialAngleDegrees": 1.25,
+      "concyclicRelative": 0.018,
+      "concurrentRelative": 0.018
+    },
+    "issues": [
+      {
+        "type": "collinear",
+        "key": "collinear:A|C|E",
+        "metric": 0,
+        "threshold": 0.025,
+        "severity": "high",
+        "description": "A, C, E look collinear.",
+        "expression": "AreCollinear(A,C,E)",
+        "allowed": true,
+        "details": {
+          "points": [
+            "A",
+            "C",
+            "E"
+          ]
+        },
+        "classification": "allowed"
+      },
+      {
+        "type": "collinear",
+        "key": "collinear:B|C|D",
+        "metric": 3.382248361386617e-17,
+        "threshold": 0.025,
+        "severity": "high",
+        "description": "B, C, D look collinear.",
+        "expression": "AreCollinear(B,C,D)",
+        "allowed": true,
+        "details": {
+          "points": [
+            "B",
+            "C",
+            "D"
+          ]
+        },
+        "classification": "allowed"
+      },
+      {
+        "type": "parallel",
+        "key": "parallel:AB|DE",
+        "metric": 6.59865096359677e-17,
+        "threshold": 0.03489949670250097,
+        "severity": "high",
+        "description": "AB and DE look parallel.",
+        "expression": "AreParallel(Line(A,B),Line(D,E))",
+        "allowed": true,
+        "details": {
+          "lines": [
+            "AB",
+            "DE"
+          ]
+        },
+        "classification": "allowed"
+      },
+      {
+        "type": "equal_length",
+        "key": "equal_length:BD|DC",
+        "metric": 1.2255692564375347e-16,
+        "threshold": 0.02,
+        "severity": "low",
+        "description": "BD and DC look equal in length.",
+        "expression": "Distance(B,D)==Distance(D,C)",
+        "allowed": true,
+        "details": {
+          "segments": [
+            "BD",
+            "DC"
+          ],
+          "lengths": [
+            3.6235341863986874,
+            3.623534186398687
+          ]
+        },
+        "classification": "allowed"
+      },
+      {
+        "type": "equal_length",
+        "key": "equal_length:CE|EA",
+        "metric": 0,
+        "threshold": 0.02,
+        "severity": "low",
+        "description": "CE and EA look equal in length.",
+        "expression": "Distance(C,E)==Distance(E,A)",
+        "allowed": true,
+        "details": {
+          "segments": [
+            "CE",
+            "EA"
+          ],
+          "lengths": [
+            4,
+            4
+          ]
+        },
+        "classification": "allowed"
+      }
+    ],
+    "accidentalIssues": [],
+    "severeIssues": [],
+    "pointCoordinates": [
+      {
+        "name": "A",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "name": "B",
+        "x": 2.4,
+        "y": 4.6
+      },
+      {
+        "name": "C",
+        "x": 8,
+        "y": 0
+      },
+      {
+        "name": "D",
+        "x": 5.2,
+        "y": 2.3
+      },
+      {
+        "name": "E",
+        "x": 4,
+        "y": 0
+      }
+    ],
+    "segmentLengths": {
+      "AB": 5.188448708429139,
+      "BC": 7.247068372797374,
+      "CA": 8,
+      "BD": 3.6235341863986874,
+      "DC": 3.623534186398687,
+      "CE": 4,
+      "EA": 4,
+      "DE": 2.5942243542145693
+    },
+    "angleDegrees": {
+      "angle_A": 62.44718842328219,
+      "angle_B": 78.15215091323837,
+      "angle_C": 39.40066066347942
+    }
+  },
+  "geometry": {
+    "circles": {}
+  },
+  "viewBounds": [
+    -1.36,
+    9.36,
+    -1.4032727272727268,
+    6.003272727272726
+  ],
+  "roundtrip": {
+    "zipSignature": true,
+    "loaded": true,
+    "objectCount": 9,
+    "missing": [],
+    "undefined": []
+  },
+  "finalObjects": [
+    {
+      "name": "A",
+      "type": "point",
+      "defined": true,
+      "visible": true,
+      "command": "(0, 0)",
+      "value": "A = (0, 0)",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "name": "B",
+      "type": "point",
+      "defined": true,
+      "visible": true,
+      "command": "",
+      "value": "B = (2.4, 4.6)",
+      "x": 2.4,
+      "y": 4.6
+    },
+    {
+      "name": "C",
+      "type": "point",
+      "defined": true,
+      "visible": true,
+      "command": "(8, 0)",
+      "value": "C = (8, 0)",
+      "x": 8,
+      "y": 0
+    },
+    {
+      "name": "a",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[B, C]",
+      "value": "a = 7.2470683727974"
+    },
+    {
+      "name": "b",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[C, A]",
+      "value": "b = 8"
+    },
+    {
+      "name": "c",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[A, B]",
+      "value": "c = 5.1884487084291"
+    },
+    {
+      "name": "D",
+      "type": "point",
+      "defined": true,
+      "visible": true,
+      "command": "Midpoint[B, C]",
+      "value": "D = (5.2, 2.3)",
+      "x": 5.2,
+      "y": 2.3
+    },
+    {
+      "name": "E",
+      "type": "point",
+      "defined": true,
+      "visible": true,
+      "command": "Midpoint[C, A]",
+      "value": "E = (4, 0)",
+      "x": 4,
+      "y": 0
+    },
+    {
+      "name": "m",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[D, E]",
+      "value": "m = 2.5942243542146"
+    }
+  ],
+  "consoleErrors": []
+}

@@ -1,0 +1,20 @@
+{
+  "name": "codex-geogebra",
+  "interface": {
+    "displayName": "GeoGebra Geometry"
+  },
+  "plugins": [
+    {
+      "name": "geogebra-geometry",
+      "source": {
+        "source": "local",
+        "path": "./plugins/geogebra-geometry"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Education"
+    }
+  ]
+}

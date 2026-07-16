@@ -1,0 +1,144 @@
+{
+  "title": "Triangle midline",
+  "slug": "triangle-midline",
+  "commands": [
+    "A=(0,0)",
+    "B=(2.4,4.6)",
+    "C=(8,0)",
+    "a=Segment(B,C)",
+    "b=Segment(C,A)",
+    "c=Segment(A,B)",
+    "D=Midpoint(B,C)",
+    "E=Midpoint(C,A)",
+    "m=Segment(D,E)"
+  ],
+  "requiredObjects": ["A", "B", "C", "D", "E", "a", "b", "c", "m"],
+  "roles": {
+    "A": "vertex",
+    "B": "vertex",
+    "C": "vertex",
+    "D": "point",
+    "E": "point",
+    "a": "side",
+    "b": "side",
+    "c": "side",
+    "m": "highlight"
+  },
+  "entities": {
+    "points": ["A", "B", "C", "D", "E"],
+    "lines": {
+      "AB": {"through": ["A", "B"]},
+      "BC": {"through": ["B", "C"]},
+      "CA": {"through": ["C", "A"]},
+      "DE": {"through": ["D", "E"]}
+    },
+    "segments": {
+      "AB": {"object": "c", "points": ["A", "B"]},
+      "BC": {"object": "a", "points": ["B", "C"]},
+      "CA": {"object": "b", "points": ["C", "A"]},
+      "BD": {"points": ["B", "D"]},
+      "DC": {"points": ["D", "C"]},
+      "CE": {"points": ["C", "E"]},
+      "EA": {"points": ["E", "A"]},
+      "DE": {"object": "m", "points": ["D", "E"]}
+    },
+    "angles": {
+      "angle_A": {"points": ["B", "A", "C"]},
+      "angle_B": {"points": ["A", "B", "C"]},
+      "angle_C": {"points": ["A", "C", "B"]}
+    }
+  },
+  "relations": [
+    {
+      "id": "D_on_BC",
+      "type": "collinear",
+      "points": ["B", "D", "C"],
+      "status": "construction",
+      "verify": "numeric"
+    },
+    {
+      "id": "E_on_CA",
+      "type": "collinear",
+      "points": ["C", "E", "A"],
+      "status": "construction",
+      "verify": "numeric"
+    },
+    {
+      "id": "D_is_midpoint",
+      "type": "equal_length",
+      "segments": ["BD", "DC"],
+      "status": "construction",
+      "verify": "numeric"
+    },
+    {
+      "id": "E_is_midpoint",
+      "type": "equal_length",
+      "segments": ["CE", "EA"],
+      "status": "construction",
+      "verify": "numeric"
+    },
+    {
+      "id": "midline_parallel",
+      "type": "parallel",
+      "lines": ["AB", "DE"],
+      "status": "conclusion",
+      "verify": "symbolic"
+    }
+  ],
+  "layout": {
+    "trials": 80,
+    "seed": 20260717,
+    "variables": {
+      "B": {
+        "x": [1.8, 3.2],
+        "y": [4.0, 5.1]
+      }
+    },
+    "constraints": [
+      {
+        "type": "orientation",
+        "points": ["A", "C", "B"],
+        "sign": "positive"
+      },
+      {
+        "type": "length_order",
+        "segments": ["CA", "BC", "AB"],
+        "order": "descending",
+        "margin": 0.12
+      },
+      {
+        "type": "angle_order",
+        "angles": ["angle_B", "angle_A", "angle_C"],
+        "order": "descending",
+        "marginDegrees": 1
+      },
+      {
+        "type": "angle_range",
+        "angle": "angle_C",
+        "min": 32,
+        "max": 47
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1100,
+    "height": 760,
+    "axes": false,
+    "grid": false,
+    "fit": true,
+    "padding": 0.17,
+    "pngScale": 2,
+    "dpi": 144
+  },
+  "audit": {
+    "enabled": true,
+    "symbolicFilter": true,
+    "failOnSeverity": "medium"
+  },
+  "exports": {
+    "ggb": true,
+    "png": true,
+    "svg": true,
+    "xml": true
+  }
+}

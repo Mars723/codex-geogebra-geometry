@@ -1,0 +1,40 @@
+\documentclass[tikz,border=8pt]{standalone}
+\usepackage{xcolor}
+\usetikzlibrary{angles,calc,quotes}
+\definecolor{ggbVertex}{HTML}{234E7A}
+\definecolor{ggbPoint}{HTML}{497AA6}
+\definecolor{ggbSide}{HTML}{444A50}
+\definecolor{ggbAux}{HTML}{9299A0}
+\definecolor{ggbHighlight}{HTML}{C45A4A}
+\definecolor{ggbCircle}{HTML}{657786}
+\definecolor{ggbAngle}{HTML}{B3832F}
+\tikzset{
+  ggb vertex line/.style={draw=ggbVertex,fill=ggbVertex},
+  ggb point line/.style={draw=ggbPoint,fill=ggbPoint},
+  ggb side/.style={draw=ggbSide,line width=1.1pt},
+  ggb auxiliary/.style={draw=ggbAux,line width=0.75pt,dashed},
+  ggb highlight/.style={draw=ggbHighlight,line width=1.35pt},
+  ggb circle/.style={draw=ggbCircle,line width=0.75pt},
+  ggb angle/.style={draw=ggbAngle,line width=0.75pt},
+  ggb hidden/.style={draw=none}
+}
+% Generated from: Triangle midline
+\begin{document}
+\begin{tikzpicture}[x=1.2000cm,y=1.2000cm]
+  \clip (-1.360000,-1.403273) rectangle (9.360000,6.003273);
+  \coordinate (ggbPoint1) at (0.00000000,0.00000000);
+  \coordinate (ggbPoint2) at (2.40000000,4.60000000);
+  \coordinate (ggbPoint3) at (8.00000000,0.00000000);
+  \coordinate (ggbPoint4) at (5.20000000,2.30000000);
+  \coordinate (ggbPoint5) at (4.00000000,0.00000000);
+  \draw[ggb side] (ggbPoint1) -- (ggbPoint2);
+  \draw[ggb side] (ggbPoint2) -- (ggbPoint3);
+  \draw[ggb side] (ggbPoint3) -- (ggbPoint1);
+  \draw[ggb highlight] (ggbPoint4) -- (ggbPoint5);
+  \filldraw[ggb vertex line] (ggbPoint1) circle[radius=1.7pt] node[anchor=north east,inner sep=3pt] {$A$};
+  \filldraw[ggb vertex line] (ggbPoint2) circle[radius=1.7pt] node[anchor=south east,inner sep=3pt] {$B$};
+  \filldraw[ggb vertex line] (ggbPoint3) circle[radius=1.7pt] node[anchor=north west,inner sep=3pt] {$C$};
+  \filldraw[ggb point line] (ggbPoint4) circle[radius=1.7pt] node[anchor=west,inner sep=3pt] {$D$};
+  \filldraw[ggb point line] (ggbPoint5) circle[radius=1.7pt] node[anchor=north,inner sep=3pt] {$E$};
+\end{tikzpicture}
+\end{document}
