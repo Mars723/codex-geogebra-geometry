@@ -17,6 +17,7 @@ Start from `assets/spec-template.json`.
 
 | Field | Purpose |
 | --- | --- |
+| `mode` | `fast` by default, or `strict` for research-grade auditing |
 | `title` | Human-readable problem name |
 | `slug` | Output filename stem |
 | `commands` | Ordered GeoGebra construction commands |
@@ -33,6 +34,19 @@ Start from `assets/spec-template.json`.
 | `exports` | `.ggb`, PNG, SVG, and XML switches |
 
 `commands` is the only required non-empty field, but a useful verified diagram also needs `requiredObjects`, `entities`, and `relations`.
+
+Mode profiles are enforced by the generator:
+
+| Policy | `fast` | `strict` |
+| --- | --- | --- |
+| Layout trial cap | 120 | 1,000 |
+| Symbolic statement cap | 4 | 32 |
+| Symbolic classification of accidental relations | disabled | enabled, 24 by default |
+| Concyclic point cap | 8 | 11 by default |
+| Blocking audit severity | high | medium |
+| CAS/proof timeout | 12 seconds | 45 seconds |
+
+The command-line `--mode fast|strict` option overrides `mode` in the JSON. The normalized output spec records the effective values under `execution`.
 
 ## 2. Commands and styling
 
@@ -208,6 +222,8 @@ The optimizer samples free-point coordinates, rejects candidates that violate co
 
 Variables may use explicit `x` and `y` ranges or `jitterX` and `jitterY` around their initial coordinates.
 
+The requested trial count is capped by the selected mode. In fast mode, use a modest range and let the first valid construction stand unless the preview contains an obvious distraction. Strict mode may use a broader search, but the built-in cap remains 1,000 trials per build.
+
 ## 6. Audit configuration
 
 Default audit categories:
@@ -225,10 +241,6 @@ Configuration:
 ```json
 {
   "enabled": true,
-  "symbolicFilter": true,
-  "maxSymbolicChecks": 24,
-  "maxPointsForConcyclic": 11,
-  "failOnSeverity": "medium",
   "specialAngles": [30, 45, 60, 90, 120, 135, 150],
   "allowSpecialAngles": ["special_angle:angle_A:60"],
   "thresholds": {
@@ -244,6 +256,12 @@ Configuration:
   }
 }
 ```
+
+Mode-sensitive fields are applied by the generator:
+
+- fast mode forces `symbolicFilter: false`, `maxSymbolicChecks: 0`, `maxPointsForConcyclic <= 8`, and `failOnSeverity: "high"`;
+- strict mode defaults to `symbolicFilter: true`, `maxSymbolicChecks: 24`, `maxPointsForConcyclic: 11`, and `failOnSeverity: "medium"`;
+- strict specs may lower or raise their symbolic limits within the engine's safety caps.
 
 Intended relations are automatically allowed. Three declared lines that explicitly share the same `through` point are also treated as intended concurrency.
 
@@ -278,6 +296,7 @@ Use `canvas.bounds: [xmin, xmax, ymin, ymax]` for a fixed view. Automatic fittin
 Important fields in `<slug>.audit.json`:
 
 - `successful`;
+- `mode` and `execution`;
 - `engine.casReady`;
 - `failedChecks`;
 - `layout.initialScore` and `layout.bestScore`;
@@ -293,3 +312,4 @@ An audit issue classification is:
 - `structural`: symbolically true from the construction;
 - `accidental`: symbolically false despite looking true;
 - `unresolved`: proof system could not classify it.
+- `numeric-only`: detected by the numeric visual audit but not sent to symbolic classification, normally in fast mode.

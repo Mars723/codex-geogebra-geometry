@@ -9,11 +9,35 @@ import { pathToFileURL } from "node:url";
 const DEFAULT_CDN_MODULE =
   "https://www.geogebra.org/apps/latest/web3d/web3d.nocache.mjs";
 
+const MODE_PROFILES = Object.freeze({
+  fast: Object.freeze({
+    maxLayoutTrials: 120,
+    symbolicFilter: false,
+    maxSymbolicChecks: 0,
+    maxPointsForConcyclic: 8,
+    failOnSeverity: "high",
+    maxStatementProofs: 4,
+    casTimeoutMs: 12_000,
+    proofTimeoutMs: 12_000,
+  }),
+  strict: Object.freeze({
+    maxLayoutTrials: 1_000,
+    symbolicFilter: true,
+    maxSymbolicChecks: 24,
+    maxPointsForConcyclic: 11,
+    failOnSeverity: "medium",
+    maxStatementProofs: 32,
+    casTimeoutMs: 45_000,
+    proofTimeoutMs: 45_000,
+  }),
+});
+
 function usage() {
   console.log(`Usage:
   node build_geogebra.mjs --spec construction.json --out-dir output
 
 Options:
+  --mode fast|strict             Override the spec mode (default: fast)
   --geogebra-module PATH_OR_URL  Override the GeoGebra web3d module
   --browser PATH                 Override Chrome/Chromium executable
   --online                       Force the official GeoGebra CDN module
@@ -42,6 +66,8 @@ function parseArgs(argv) {
       args.spec = argv[++index];
     } else if (arg === "--out-dir") {
       args.outDir = argv[++index];
+    } else if (arg === "--mode") {
+      args.mode = argv[++index];
     } else if (arg === "--geogebra-module") {
       args.geogebraModule = argv[++index];
     } else if (arg === "--browser") {
@@ -72,12 +98,54 @@ function slugify(value) {
   return result || "geometry";
 }
 
-function normalizeSpec(input) {
+function normalizeMode(value) {
+  const mode = String(value || "fast").toLowerCase();
+  if (!Object.prototype.hasOwnProperty.call(MODE_PROFILES, mode)) {
+    throw new Error(`Unknown mode "${value}". Use "fast" or "strict".`);
+  }
+  return mode;
+}
+
+function boundedInteger(value, fallback, minimum, maximum) {
+  const number = Number(value);
+  const normalized = Number.isFinite(number) ? Math.floor(number) : fallback;
+  return Math.min(maximum, Math.max(minimum, normalized));
+}
+
+function normalizedSeverity(value, fallback) {
+  return ["none", "low", "medium", "high"].includes(value) ? value : fallback;
+}
+
+function normalizeSpec(input, modeOverride) {
   if (!input || typeof input !== "object") {
     throw new Error("The construction spec must be a JSON object.");
   }
   if (!Array.isArray(input.commands) || input.commands.length === 0) {
     throw new Error("The construction spec needs a non-empty commands array.");
+  }
+
+  const mode = normalizeMode(modeOverride || input.mode);
+  const profile = MODE_PROFILES[mode];
+  const relations = input.relations || [];
+  const checks = input.checks || [];
+  const statementProofs = [
+    ...relations.filter(
+      (relation) =>
+        relation.verify === "symbolic" ||
+        (relation.verify === undefined && relation.status === "conclusion"),
+    ),
+    ...checks.filter((check) => check.verify === "symbolic"),
+  ].length;
+  if (statementProofs > profile.maxStatementProofs) {
+    const resolution =
+      mode === "fast"
+        ? "Use strict mode or mark nonessential checks as numeric."
+        : "Mark nonessential checks as numeric or split the audit.";
+    throw new Error(
+      `${mode} mode allows at most ${profile.maxStatementProofs} symbolic ` +
+        `statement checks, but the spec requests ${statementProofs}. ` +
+        resolution,
+    );
   }
 
   const canvas = {
@@ -93,12 +161,44 @@ function normalizeSpec(input) {
     ...input.canvas,
   };
 
+  const auditInput = input.audit || {};
   const audit = {
     enabled: true,
-    symbolicFilter: true,
-    maxSymbolicChecks: 24,
-    maxPointsForConcyclic: 11,
-    failOnSeverity: "medium",
+    ...auditInput,
+    symbolicFilter:
+      mode === "strict"
+        ? (auditInput.symbolicFilter ?? profile.symbolicFilter)
+        : profile.symbolicFilter,
+    maxSymbolicChecks:
+      mode === "strict"
+        ? boundedInteger(
+            auditInput.maxSymbolicChecks,
+            profile.maxSymbolicChecks,
+            0,
+            64,
+          )
+        : profile.maxSymbolicChecks,
+    maxPointsForConcyclic:
+      mode === "strict"
+        ? boundedInteger(
+            auditInput.maxPointsForConcyclic,
+            profile.maxPointsForConcyclic,
+            4,
+            14,
+          )
+        : Math.min(
+            boundedInteger(
+              auditInput.maxPointsForConcyclic,
+              profile.maxPointsForConcyclic,
+              4,
+              profile.maxPointsForConcyclic,
+            ),
+            profile.maxPointsForConcyclic,
+          ),
+    failOnSeverity:
+      mode === "strict"
+        ? normalizedSeverity(auditInput.failOnSeverity, profile.failOnSeverity)
+        : profile.failOnSeverity,
     thresholds: {
       pointCrowding: 0.035,
       collinear: 0.025,
@@ -109,24 +209,28 @@ function normalizeSpec(input) {
       specialAngleDegrees: 1.25,
       concyclicRelative: 0.018,
       concurrentRelative: 0.018,
-      ...input.audit?.thresholds,
+      ...auditInput.thresholds,
     },
-    ...input.audit,
   };
-  audit.thresholds = {
-    pointCrowding: 0.035,
-    collinear: 0.025,
-    parallelDegrees: 2,
-    perpendicularDegrees: 2,
-    equalLengthRelative: 0.02,
-    equalAngleDegrees: 1.5,
-    specialAngleDegrees: 1.25,
-    concyclicRelative: 0.018,
-    concurrentRelative: 0.018,
-    ...input.audit?.thresholds,
+
+  const layoutInput = input.layout || {};
+  const requestedLayoutTrials = boundedInteger(
+    layoutInput.trials,
+    0,
+    0,
+    Number.MAX_SAFE_INTEGER,
+  );
+  const layout = {
+    trials: Math.min(requestedLayoutTrials, profile.maxLayoutTrials),
+    seed: 1729,
+    variables: {},
+    constraints: [],
+    ...layoutInput,
+    trials: Math.min(requestedLayoutTrials, profile.maxLayoutTrials),
   };
 
   return {
+    mode,
     title: input.title || "GeoGebra geometry construction",
     slug: slugify(input.slug || input.title),
     language: input.language || "en",
@@ -144,14 +248,18 @@ function normalizeSpec(input) {
       angles: input.entities?.angles || {},
       circles: input.entities?.circles || {},
     },
-    relations: input.relations || [],
-    checks: input.checks || [],
-    layout: {
-      trials: 0,
-      seed: 1729,
-      variables: {},
-      constraints: [],
-      ...input.layout,
+    relations,
+    checks,
+    layout,
+    execution: {
+      maxLayoutTrials: profile.maxLayoutTrials,
+      requestedLayoutTrials,
+      effectiveLayoutTrials: layout.trials,
+      maxStatementProofs: profile.maxStatementProofs,
+      requestedStatementProofs: statementProofs,
+      casTimeoutMs: profile.casTimeoutMs,
+      proofTimeoutMs: profile.proofTimeoutMs,
+      symbolicAccidentalRelationAudit: audit.symbolicFilter,
     },
     audit,
     exports: {
@@ -379,6 +487,18 @@ function severityRank(value) {
   return { none: 0, low: 1, medium: 2, high: 3 }[value] ?? 0;
 }
 
+function reportPath(filePath) {
+  const relative = path.relative(process.cwd(), filePath);
+  if (
+    relative &&
+    relative !== ".." &&
+    !relative.startsWith(`..${path.sep}`)
+  ) {
+    return relative;
+  }
+  return filePath;
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (args.help) {
@@ -391,7 +511,7 @@ async function main() {
   }
 
   const specPath = path.resolve(args.spec);
-  const spec = normalizeSpec(readJson(specPath));
+  const spec = normalizeSpec(readJson(specPath), args.mode);
   const outDir = path.resolve(
     args.outDir || path.join(path.dirname(specPath), `${spec.slug}-output`),
   );
@@ -1353,7 +1473,7 @@ async function main() {
       const waitForCas = async () => {
         const label = nextHelper("CasReady");
         ggb.evalCommand(`${label}=CASLoaded()`);
-        const deadline = Date.now() + 45_000;
+        const deadline = Date.now() + constructionSpec.execution.casTimeoutMs;
         while (ggb.getValue(label) !== 1 && Date.now() < deadline) {
           await sleep(100);
         }
@@ -1387,7 +1507,8 @@ async function main() {
           const proofOk = ggb.evalCommand(
             `${proofLabel}=ProveDetails(${expression})`,
           );
-          const deadline = Date.now() + 45_000;
+          const deadline =
+            Date.now() + constructionSpec.execution.proofTimeoutMs;
           while (
             proofOk &&
             !ggb.isDefined(proofLabel) &&
@@ -1556,7 +1677,11 @@ async function main() {
       }
       for (const issue of audit.issues) {
         if (issue.allowed) issue.classification = "allowed";
-        else if (!issue.classification) issue.classification = "unresolved";
+        else if (!issue.classification) {
+          issue.classification = constructionSpec.audit.symbolicFilter
+            ? "unresolved"
+            : "numeric-only";
+        }
       }
 
       ggb.evalCommand('SetPerspective("G")');
@@ -1659,7 +1784,7 @@ async function main() {
       fs.writeFileSync(outputPaths.xml, result.xml);
     }
     outputPaths.spec = path.join(outDir, `${stem}.spec.json`);
-    fs.writeFileSync(outputPaths.spec, JSON.stringify(spec, null, 2));
+    fs.writeFileSync(outputPaths.spec, `${JSON.stringify(spec, null, 2)}\n`);
 
     const accidentalIssues = result.audit.issues.filter(
       (issue) =>
@@ -1687,6 +1812,8 @@ async function main() {
     const report = {
       successful,
       title: spec.title,
+      mode: spec.mode,
+      execution: spec.execution,
       engine: {
         version: result.version,
         module: moduleUrl,
@@ -1697,7 +1824,7 @@ async function main() {
         Object.entries(outputPaths).map(([name, file]) => [
           name,
           {
-            path: file,
+            path: reportPath(file),
             bytes: fs.statSync(file).size,
           },
         ]),
@@ -1728,13 +1855,15 @@ async function main() {
       consoleErrors,
     };
     outputPaths.report = path.join(outDir, `${stem}.audit.json`);
-    fs.writeFileSync(outputPaths.report, JSON.stringify(report, null, 2));
+    fs.writeFileSync(outputPaths.report, `${JSON.stringify(report, null, 2)}\n`);
 
     console.log(
       JSON.stringify(
         {
           successful,
           title: spec.title,
+          mode: spec.mode,
+          execution: spec.execution,
           outputs: outputPaths,
           failedChecks: failedChecks.map(({ id }) => id),
           accidentalIssues: accidentalIssues.map(

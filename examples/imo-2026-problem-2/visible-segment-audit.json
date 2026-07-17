@@ -1,0 +1,58 @@
+{
+  "title": "IMO 2026 Problem 2 visible-segment audit",
+  "source": "https://www.imo-official.org/problems/?column=year&language=en&order=desc",
+  "configuration": {
+    "A": [-1.23, 8.12],
+    "B": [-4.0, 0.0],
+    "C": [8.0, 0.0],
+    "M": [-2.615, 4.06],
+    "N": [3.385, 4.06],
+    "K": [-2.742991341912505, 1.7874558044958913],
+    "L": [3.6892754233320213, 2.0155490169244503],
+    "O": [0.38499999999994905, 4.387122710595732]
+  },
+  "triangleAnglesDegrees": {
+    "A": 67.49682281227219,
+    "B": 71.16379720965257,
+    "C": 41.33937997807522
+  },
+  "givenAnglePairsDegrees": {
+    "KBA_equals_ACL": 16.280179549912,
+    "LBK_equals_LNC": 40.195432514258,
+    "LCK_equals_BMK": 15.612668315256
+  },
+  "strictInteriorBarycentricMargins": {
+    "K_in_BMC": 0.05393737402726631,
+    "L_in_BNC": 0.1683042501676013,
+    "K_in_ABL": 0.0924415519153042,
+    "L_in_AKC": 0.1971841533756188
+  },
+  "conclusion": {
+    "OM": 3.017782176994754,
+    "ON": 3.0177821769948547,
+    "absoluteDifference": 1.007194327939942e-13,
+    "verification": "numeric",
+    "symbolicAttempt": "unresolved"
+  },
+  "visibleFiniteSegmentAudit": {
+    "mediumOrHighIssues": [],
+    "minimumNonIntendedParallelOrPerpendicularClearanceDegrees": 2.030902193705162,
+    "closestPair": ["BC", "KL"],
+    "pointCrowdingIssues": [],
+    "undeclaredNearCollinearTriples": [],
+    "undeclaredNearConcyclicQuadruples": [],
+    "visibleNearConcurrencyIssues": []
+  },
+  "policyNotes": [
+    "The engine's infinite-line concurrency threshold was disabled for this dense finite-segment diagram.",
+    "A separate segment-aware concurrency pass was run and found no visible medium/high issue.",
+    "Low-severity near-equalities remain numerically possible, but distinct colors, line styles, and angle decorations prevent them from being marked as intended equalities."
+  ],
+  "roundtrip": {
+    "zipSignature": true,
+    "loaded": true,
+    "objectCount": 62,
+    "missing": [],
+    "undefined": []
+  }
+}

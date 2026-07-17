@@ -14,8 +14,9 @@ Before opening a pull request:
 1. Validate the plugin manifest.
 2. Validate the embedded skill.
 3. Generate at least one representative `.ggb`.
-4. Confirm the audit report is successful.
-5. Round-trip load the generated file.
-6. Inspect the latest PNG preview.
+4. Test the representative spec in both `fast` and `strict` modes.
+5. Confirm both audit reports are successful.
+6. Round-trip load the generated files.
+7. Inspect the latest PNG previews.
 
 Do not encode theorem conclusions directly into construction commands merely to make a test pass.

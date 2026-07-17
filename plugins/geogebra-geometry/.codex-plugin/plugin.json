@@ -1,6 +1,6 @@
 {
   "name": "geogebra-geometry",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Generate verified GeoGebra construction files from geometry problem text, screenshots, or LaTeX.",
   "author": {
     "name": "Mars Wang",
@@ -20,8 +20,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "GeoGebra Geometry",
-    "shortDescription": "Build verified dynamic geometry diagrams.",
-    "longDescription": "Turn geometry problem statements, screenshots, or LaTeX into importable GeoGebra .ggb files. The plugin verifies intended conclusions, searches for clean layouts, audits accidental collinearity and other misleading visual relations, and can optionally emit TikZ.",
+    "shortDescription": "Build fast or research-grade geometry diagrams.",
+    "longDescription": "Turn geometry problem statements, screenshots, or LaTeX into importable GeoGebra .ggb files. Fast mode is the default for economical one-shot generation; strict mode adds deeper symbolic auditing and layout search. Both modes verify intended conclusions, round-trip the generated file, and export a preview.",
     "developerName": "Mars Wang",
     "category": "Education",
     "capabilities": [
@@ -29,14 +29,16 @@
       "Write"
     ],
     "defaultPrompt": [
-      "Turn this geometry problem into a verified GeoGebra file.",
+      "Turn this geometry problem into a verified GeoGebra file in fast mode.",
+      "Run a strict misleading-relation audit on this geometry construction.",
       "Read this geometry screenshot and generate a clean .ggb diagram.",
       "Audit this construction for accidental collinearity or parallelism."
     ],
     "brandColor": "#234E7A",
     "websiteURL": "https://github.com/Mars723/codex-geogebra-geometry",
     "screenshots": [
-      "./assets/triangle-midline.png"
+      "./assets/triangle-midline.png",
+      "./assets/imo-2026-problem-2.png"
     ]
   }
 }

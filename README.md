@@ -2,7 +2,7 @@
 
 Generate verified, importable GeoGebra `.ggb` constructions from geometry problem text, screenshots, or LaTeX.
 
-The plugin is designed for olympiad and competition geometry diagrams where the picture should be mathematically faithful without suggesting accidental relationships.
+The plugin is designed for olympiad and competition geometry diagrams. Version 0.2 adds a fast default path for normal work and a strict path for research-grade misleading-relation auditing.
 
 ![Triangle midline example](plugins/geogebra-geometry/assets/triangle-midline.png)
 
@@ -16,6 +16,15 @@ The plugin is designed for olympiad and competition geometry diagrams where the 
 - Searches valid coordinate layouts to avoid misleading diagrams.
 - Round-trip loads every generated `.ggb` before delivery.
 - Exports PNG, SVG, GeoGebra XML, and optional native TikZ.
+
+## Two modes
+
+| Mode | Best for | Audit behavior |
+| --- | --- | --- |
+| `fast` (default) | One-shot diagrams and normal iteration | Caps layout search at 120 trials, verifies central conclusions, scans all declared geometry numerically, and blocks high-severity misleading relations |
+| `strict` | Final publication, research, or exhaustive review | Caps layout search at 1,000 trials, symbolically classifies suspicious relations, and blocks medium- and high-severity findings |
+
+Fast mode still creates a real dynamic `.ggb`, verifies required objects and stated conclusions, reloads the exported file, and produces an audit report. It saves time and tokens by not trying to symbolically prove every accidental-looking relationship.
 
 ## Install from the marketplace
 
@@ -52,7 +61,7 @@ Use $generate-geogebra-geometry to turn this problem into a verified .ggb file.
 ```
 
 ```text
-Read this geometry screenshot, construct the diagram in GeoGebra, verify the stated conclusion, and check for accidental collinearity.
+Use $generate-geogebra-geometry in strict mode. Read this screenshot, verify the stated conclusion, and fully audit accidental collinearity and parallelism.
 ```
 
 Normal deliverables are:
@@ -62,7 +71,9 @@ Normal deliverables are:
 - an `.audit.json` verification report;
 - optional SVG, GeoGebra XML, and TikZ.
 
-## Example
+## Examples
+
+### Triangle midline
 
 The repository includes a triangle-midline example in [`examples/triangle-midline`](examples/triangle-midline):
 
@@ -72,6 +83,18 @@ The repository includes a triangle-midline example in [`examples/triangle-midlin
 - [`triangle-midline.tex`](examples/triangle-midline/triangle-midline.tex)
 
 The midline parallelism conclusion is symbolically verified and the generated `.ggb` passes round-trip loading.
+
+### Competition showcase: IMO 2026 Problem 2
+
+[![IMO 2026 Problem 2 GeoGebra preview](examples/imo-2026-problem-2/imo-2026-problem-2.png)](examples/imo-2026-problem-2/README.md)
+
+The [IMO 2026 Problem 2 showcase](examples/imo-2026-problem-2/README.md) demonstrates the strict workflow on a dense olympiad construction:
+
+- [open the dynamic `.ggb`](examples/imo-2026-problem-2/imo-2026-problem-2.ggb);
+- [inspect the strict audit](examples/imo-2026-problem-2/imo-2026-problem-2.audit.json);
+- [inspect the supplemental finite-segment audit](examples/imo-2026-problem-2/visible-segment-audit.json).
+
+All 31 declared checks pass, the 62-object file round-trips without missing or undefined objects, and the finite-segment audit finds no medium- or high-severity visible issue. The construction numerically verifies `OM = ON` for this legal representative configuration; it is a checked diagram, not a proof.
 
 ## Requirements
 
@@ -90,6 +113,8 @@ The construction, theorem conclusion, and visual appearance are treated separate
 - the visual audit identifies undeclared relationships that merely look true.
 
 A numerically true statement is never reported as a symbolic proof.
+
+Fast mode performs the same construction and round-trip checks but leaves non-blocking suspicious relations as `numeric-only`. Strict mode sends suspicious relations through GeoGebra's symbolic prover and requires medium-severity issues to be resolved.
 
 ## Documentation
 
@@ -113,9 +138,12 @@ Build the included example:
 
 ```bash
 node plugins/geogebra-geometry/skills/generate-geogebra-geometry/scripts/build_geogebra.mjs \
+  --mode fast \
   --spec plugins/geogebra-geometry/skills/generate-geogebra-geometry/assets/spec-template.json \
   --out-dir /tmp/geogebra-example
 ```
+
+Run the same command with `--mode strict` before releasing changes that affect construction, proof, layout, or audit behavior.
 
 ## License
 

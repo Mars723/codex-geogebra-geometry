@@ -1,4 +1,5 @@
 {
+  "mode": "fast",
   "title": "Triangle midline",
   "slug": "triangle-midline",
   "language": "en",
@@ -218,7 +219,7 @@
   ],
   "checks": [],
   "layout": {
-    "trials": 80,
+    "trials": 60,
     "seed": 20260717,
     "variables": {
       "B": {
@@ -270,12 +271,22 @@
       }
     ]
   },
+  "execution": {
+    "maxLayoutTrials": 120,
+    "requestedLayoutTrials": 60,
+    "effectiveLayoutTrials": 60,
+    "maxStatementProofs": 4,
+    "requestedStatementProofs": 1,
+    "casTimeoutMs": 12000,
+    "proofTimeoutMs": 12000,
+    "symbolicAccidentalRelationAudit": false
+  },
   "audit": {
     "enabled": true,
-    "symbolicFilter": true,
-    "maxSymbolicChecks": 24,
-    "maxPointsForConcyclic": 11,
-    "failOnSeverity": "medium",
+    "symbolicFilter": false,
+    "maxSymbolicChecks": 0,
+    "maxPointsForConcyclic": 8,
+    "failOnSeverity": "high",
     "thresholds": {
       "pointCrowding": 0.035,
       "collinear": 0.025,
