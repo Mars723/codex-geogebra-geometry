@@ -37,7 +37,8 @@
     "brandColor": "#234E7A",
     "websiteURL": "https://github.com/Mars723/codex-geogebra-geometry",
     "screenshots": [
-      "./assets/triangle-midline.png"
+      "./assets/triangle-midline.png",
+      "./assets/imo-2026-problem-2.png"
     ]
   }
 }

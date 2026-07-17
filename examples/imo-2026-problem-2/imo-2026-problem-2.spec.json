@@ -1,0 +1,914 @@
+{
+  "mode": "strict",
+  "title": "IMO 2026 Problem 2",
+  "slug": "imo-2026-problem-2",
+  "language": "en",
+  "appName": "classic",
+  "canvas": {
+    "width": 1200,
+    "height": 860,
+    "axes": false,
+    "grid": false,
+    "fit": true,
+    "padding": 0.13,
+    "pngScale": 2,
+    "transparent": false,
+    "dpi": 144
+  },
+  "commands": [
+    "A=(-1.23,8.12)",
+    "B=(-4,0)",
+    "C=(8,0)",
+    "M=Midpoint(A,B)",
+    "N=Midpoint(A,C)",
+    "tAlpha=16.280179549912°",
+    "tBeta=40.195432514258°",
+    "tGamma=15.612668315256°",
+    "A_B_alpha=Rotate(A,-tAlpha,B)",
+    "B_M_gamma=Rotate(B,tGamma,M)",
+    "ray_BK=Ray(B,A_B_alpha)",
+    "ray_MK=Ray(M,B_M_gamma)",
+    "K=Intersect(ray_BK,ray_MK)",
+    "A_C_alpha=Rotate(A,tAlpha,C)",
+    "K_B_beta=Rotate(K,-tBeta,B)",
+    "ray_CL=Ray(C,A_C_alpha)",
+    "ray_BL=Ray(B,K_B_beta)",
+    "L=Intersect(ray_CL,ray_BL)",
+    "C_N_beta=Rotate(C,-tBeta,N)",
+    "ray_NL=Ray(N,C_N_beta)",
+    "L_C_gamma=Rotate(L,tGamma,C)",
+    "ray_CK=Ray(C,L_C_gamma)",
+    "side_AB=Segment(A,B)",
+    "side_BC=Segment(B,C)",
+    "side_CA=Segment(C,A)",
+    "seg_MC=Segment(M,C)",
+    "seg_BN=Segment(B,N)",
+    "seg_AK=Segment(A,K)",
+    "seg_KC=Segment(K,C)",
+    "seg_AL=Segment(A,L)",
+    "seg_BL=Segment(B,L)",
+    "seg_BK=Segment(B,K)",
+    "seg_CL=Segment(C,L)",
+    "seg_NL=Segment(N,L)",
+    "seg_MK=Segment(M,K)",
+    "seg_KL=Segment(K,L)",
+    "omega=Circle(A,K,L)",
+    "O=Center(omega)",
+    "seg_OM=Segment(O,M)",
+    "seg_ON=Segment(O,N)",
+    "ang_KBA=Angle(K,B,A)",
+    "ang_ACL=Angle(A,C,L)",
+    "ang_LBK=Angle(L,B,K)",
+    "ang_LNC=Angle(L,N,C)",
+    "ang_LCK=Angle(L,C,K)",
+    "ang_BMK=Angle(B,M,K)",
+    "poly_BMC=Polygon(B,M,C)",
+    "poly_BNC=Polygon(B,N,C)",
+    "poly_ABL=Polygon(A,B,L)",
+    "poly_AKC=Polygon(A,K,C)"
+  ],
+  "postCommands": [],
+  "requiredObjects": [
+    "A",
+    "B",
+    "C",
+    "M",
+    "N",
+    "K",
+    "L",
+    "O",
+    "side_AB",
+    "side_BC",
+    "side_CA",
+    "seg_MC",
+    "seg_BN",
+    "seg_AK",
+    "seg_KC",
+    "seg_AL",
+    "seg_BL",
+    "seg_BK",
+    "seg_CL",
+    "seg_NL",
+    "seg_MK",
+    "seg_KL",
+    "seg_OM",
+    "seg_ON",
+    "omega",
+    "ang_KBA",
+    "ang_ACL",
+    "ang_LBK",
+    "ang_LNC",
+    "ang_LCK",
+    "ang_BMK"
+  ],
+  "roles": {
+    "A": "vertex",
+    "B": "vertex",
+    "C": "vertex",
+    "M": "point",
+    "N": "point",
+    "K": "point",
+    "L": "point",
+    "O": "point",
+    "side_AB": "side",
+    "side_BC": "side",
+    "side_CA": "side",
+    "seg_MC": "auxiliary",
+    "seg_BN": "auxiliary",
+    "seg_AK": "auxiliary",
+    "seg_KC": "auxiliary",
+    "seg_AL": "auxiliary",
+    "seg_BL": "auxiliary",
+    "seg_BK": "auxiliary",
+    "seg_CL": "auxiliary",
+    "seg_NL": "auxiliary",
+    "seg_MK": "auxiliary",
+    "seg_KL": "highlight",
+    "seg_OM": "highlight",
+    "seg_ON": "highlight",
+    "omega": "circle",
+    "ang_KBA": "angle",
+    "ang_ACL": "angle",
+    "ang_LBK": "angle",
+    "ang_LNC": "angle",
+    "ang_LCK": "angle",
+    "ang_BMK": "angle",
+    "tAlpha": "hidden",
+    "tBeta": "hidden",
+    "tGamma": "hidden",
+    "A_B_alpha": "hidden",
+    "B_M_gamma": "hidden",
+    "A_C_alpha": "hidden",
+    "K_B_beta": "hidden",
+    "C_N_beta": "hidden",
+    "L_C_gamma": "hidden",
+    "ray_BK": "hidden",
+    "ray_MK": "hidden",
+    "ray_CL": "hidden",
+    "ray_BL": "hidden",
+    "ray_NL": "hidden",
+    "ray_CK": "hidden",
+    "poly_BMC": "hidden",
+    "poly_BNC": "hidden",
+    "poly_ABL": "hidden",
+    "poly_AKC": "hidden"
+  },
+  "styles": {
+    "A": {
+      "fixed": true,
+      "selectionAllowed": false
+    },
+    "B": {
+      "fixed": true,
+      "selectionAllowed": false
+    },
+    "C": {
+      "fixed": true,
+      "selectionAllowed": false
+    },
+    "K": {
+      "color": "#C45A4A",
+      "pointSize": 5
+    },
+    "L": {
+      "color": "#C45A4A",
+      "pointSize": 5
+    },
+    "O": {
+      "color": "#2E7D73",
+      "pointSize": 5
+    },
+    "seg_MC": {
+      "color": "#A4ABB2",
+      "lineThickness": 2,
+      "lineStyle": 1
+    },
+    "seg_BN": {
+      "color": "#A4ABB2",
+      "lineThickness": 2,
+      "lineStyle": 1
+    },
+    "seg_AK": {
+      "color": "#969DA4",
+      "lineThickness": 2,
+      "lineStyle": 0
+    },
+    "seg_KC": {
+      "color": "#969DA4",
+      "lineThickness": 2,
+      "lineStyle": 0
+    },
+    "seg_AL": {
+      "color": "#B0B6BC",
+      "lineThickness": 2,
+      "lineStyle": 1
+    },
+    "seg_BL": {
+      "color": "#969DA4",
+      "lineThickness": 2,
+      "lineStyle": 0
+    },
+    "seg_BK": {
+      "color": "#66717A",
+      "lineThickness": 3,
+      "lineStyle": 0
+    },
+    "seg_CL": {
+      "color": "#66717A",
+      "lineThickness": 3,
+      "lineStyle": 0
+    },
+    "seg_NL": {
+      "color": "#66717A",
+      "lineThickness": 3,
+      "lineStyle": 0
+    },
+    "seg_MK": {
+      "color": "#66717A",
+      "lineThickness": 3,
+      "lineStyle": 0
+    },
+    "seg_KL": {
+      "color": "#C45A4A",
+      "lineThickness": 5
+    },
+    "seg_OM": {
+      "color": "#2E7D73",
+      "lineThickness": 5,
+      "decoration": 1
+    },
+    "seg_ON": {
+      "color": "#2E7D73",
+      "lineThickness": 5,
+      "decoration": 1
+    },
+    "omega": {
+      "color": "#708493",
+      "lineThickness": 2
+    },
+    "ang_KBA": {
+      "color": "#C58B2B",
+      "filling": 0.12,
+      "decoration": 1
+    },
+    "ang_ACL": {
+      "color": "#C58B2B",
+      "filling": 0.12,
+      "decoration": 1
+    },
+    "ang_LBK": {
+      "color": "#2E7D73",
+      "filling": 0.12,
+      "decoration": 2
+    },
+    "ang_LNC": {
+      "color": "#2E7D73",
+      "filling": 0.12,
+      "decoration": 2
+    },
+    "ang_LCK": {
+      "color": "#8A5AA8",
+      "filling": 0.12,
+      "decoration": 3
+    },
+    "ang_BMK": {
+      "color": "#8A5AA8",
+      "filling": 0.12,
+      "decoration": 3
+    }
+  },
+  "entities": {
+    "points": [
+      "A",
+      "B",
+      "C",
+      "M",
+      "N",
+      "K",
+      "L",
+      "O"
+    ],
+    "lines": {
+      "AB": {
+        "through": [
+          "A",
+          "B"
+        ]
+      },
+      "BC": {
+        "through": [
+          "B",
+          "C"
+        ]
+      },
+      "CA": {
+        "through": [
+          "C",
+          "A"
+        ]
+      },
+      "MC": {
+        "through": [
+          "M",
+          "C"
+        ]
+      },
+      "BN": {
+        "through": [
+          "B",
+          "N"
+        ]
+      },
+      "AK": {
+        "through": [
+          "A",
+          "K"
+        ]
+      },
+      "KC": {
+        "through": [
+          "K",
+          "C"
+        ]
+      },
+      "AL": {
+        "through": [
+          "A",
+          "L"
+        ]
+      },
+      "BL": {
+        "through": [
+          "B",
+          "L"
+        ]
+      },
+      "BK": {
+        "through": [
+          "B",
+          "K"
+        ]
+      },
+      "CL": {
+        "through": [
+          "C",
+          "L"
+        ]
+      },
+      "NL": {
+        "through": [
+          "N",
+          "L"
+        ]
+      },
+      "MK": {
+        "through": [
+          "M",
+          "K"
+        ]
+      },
+      "KL": {
+        "through": [
+          "K",
+          "L"
+        ]
+      },
+      "OM": {
+        "through": [
+          "O",
+          "M"
+        ]
+      },
+      "ON": {
+        "through": [
+          "O",
+          "N"
+        ]
+      }
+    },
+    "segments": {
+      "AB": {
+        "object": "side_AB",
+        "points": [
+          "A",
+          "B"
+        ]
+      },
+      "BC": {
+        "object": "side_BC",
+        "points": [
+          "B",
+          "C"
+        ]
+      },
+      "CA": {
+        "object": "side_CA",
+        "points": [
+          "C",
+          "A"
+        ]
+      },
+      "AM": {
+        "points": [
+          "A",
+          "M"
+        ]
+      },
+      "MB": {
+        "points": [
+          "M",
+          "B"
+        ]
+      },
+      "AN": {
+        "points": [
+          "A",
+          "N"
+        ]
+      },
+      "NC": {
+        "points": [
+          "N",
+          "C"
+        ]
+      },
+      "MC": {
+        "object": "seg_MC",
+        "points": [
+          "M",
+          "C"
+        ]
+      },
+      "BN": {
+        "object": "seg_BN",
+        "points": [
+          "B",
+          "N"
+        ]
+      },
+      "AK": {
+        "object": "seg_AK",
+        "points": [
+          "A",
+          "K"
+        ]
+      },
+      "KC": {
+        "object": "seg_KC",
+        "points": [
+          "K",
+          "C"
+        ]
+      },
+      "AL": {
+        "object": "seg_AL",
+        "points": [
+          "A",
+          "L"
+        ]
+      },
+      "BL": {
+        "object": "seg_BL",
+        "points": [
+          "B",
+          "L"
+        ]
+      },
+      "BK": {
+        "object": "seg_BK",
+        "points": [
+          "B",
+          "K"
+        ]
+      },
+      "CL": {
+        "object": "seg_CL",
+        "points": [
+          "C",
+          "L"
+        ]
+      },
+      "NL": {
+        "object": "seg_NL",
+        "points": [
+          "N",
+          "L"
+        ]
+      },
+      "MK": {
+        "object": "seg_MK",
+        "points": [
+          "M",
+          "K"
+        ]
+      },
+      "KL": {
+        "object": "seg_KL",
+        "points": [
+          "K",
+          "L"
+        ]
+      },
+      "OM": {
+        "object": "seg_OM",
+        "points": [
+          "O",
+          "M"
+        ]
+      },
+      "ON": {
+        "object": "seg_ON",
+        "points": [
+          "O",
+          "N"
+        ]
+      },
+      "OA": {
+        "points": [
+          "O",
+          "A"
+        ]
+      },
+      "OK": {
+        "points": [
+          "O",
+          "K"
+        ]
+      },
+      "OL": {
+        "points": [
+          "O",
+          "L"
+        ]
+      },
+      "MN": {
+        "points": [
+          "M",
+          "N"
+        ]
+      }
+    },
+    "angles": {
+      "KBA": {
+        "object": "ang_KBA",
+        "points": [
+          "K",
+          "B",
+          "A"
+        ]
+      },
+      "ACL": {
+        "object": "ang_ACL",
+        "points": [
+          "A",
+          "C",
+          "L"
+        ]
+      },
+      "LBK": {
+        "object": "ang_LBK",
+        "points": [
+          "L",
+          "B",
+          "K"
+        ]
+      },
+      "LNC": {
+        "object": "ang_LNC",
+        "points": [
+          "L",
+          "N",
+          "C"
+        ]
+      },
+      "LCK": {
+        "object": "ang_LCK",
+        "points": [
+          "L",
+          "C",
+          "K"
+        ]
+      },
+      "BMK": {
+        "object": "ang_BMK",
+        "points": [
+          "B",
+          "M",
+          "K"
+        ]
+      }
+    },
+    "circles": {
+      "omega": {
+        "object": "omega"
+      }
+    }
+  },
+  "relations": [
+    {
+      "id": "M_on_AB",
+      "type": "collinear",
+      "points": [
+        "A",
+        "M",
+        "B"
+      ],
+      "status": "construction",
+      "verify": "numeric"
+    },
+    {
+      "id": "M_midpoint_AB",
+      "type": "equal_length",
+      "segments": [
+        "AM",
+        "MB"
+      ],
+      "status": "construction",
+      "verify": "numeric"
+    },
+    {
+      "id": "N_on_AC",
+      "type": "collinear",
+      "points": [
+        "A",
+        "N",
+        "C"
+      ],
+      "status": "construction",
+      "verify": "numeric"
+    },
+    {
+      "id": "N_midpoint_AC",
+      "type": "equal_length",
+      "segments": [
+        "AN",
+        "NC"
+      ],
+      "status": "construction",
+      "verify": "numeric"
+    },
+    {
+      "id": "angle_pair_alpha",
+      "type": "equal_angle",
+      "angles": [
+        "KBA",
+        "ACL"
+      ],
+      "status": "given",
+      "verify": "numeric"
+    },
+    {
+      "id": "angle_pair_beta",
+      "type": "equal_angle",
+      "angles": [
+        "LBK",
+        "LNC"
+      ],
+      "status": "given",
+      "verify": "numeric"
+    },
+    {
+      "id": "angle_pair_gamma",
+      "type": "equal_angle",
+      "angles": [
+        "LCK",
+        "BMK"
+      ],
+      "status": "given",
+      "verify": "numeric"
+    },
+    {
+      "id": "A_on_omega",
+      "type": "point_on_circle",
+      "point": "A",
+      "circle": "omega",
+      "status": "construction",
+      "verify": "numeric"
+    },
+    {
+      "id": "K_on_omega",
+      "type": "point_on_circle",
+      "point": "K",
+      "circle": "omega",
+      "status": "construction",
+      "verify": "numeric"
+    },
+    {
+      "id": "L_on_omega",
+      "type": "point_on_circle",
+      "point": "L",
+      "circle": "omega",
+      "status": "construction",
+      "verify": "numeric"
+    },
+    {
+      "id": "O_radius_OA_OK",
+      "type": "equal_length",
+      "segments": [
+        "OA",
+        "OK"
+      ],
+      "status": "construction",
+      "verify": "numeric"
+    },
+    {
+      "id": "O_radius_OK_OL",
+      "type": "equal_length",
+      "segments": [
+        "OK",
+        "OL"
+      ],
+      "status": "construction",
+      "verify": "numeric"
+    },
+    {
+      "id": "O_radius_OA_OL",
+      "type": "equal_length",
+      "segments": [
+        "OA",
+        "OL"
+      ],
+      "status": "construction",
+      "verify": "numeric"
+    },
+    {
+      "id": "midline_parallel",
+      "expression": "AreParallel(Line(M,N),Line(B,C))",
+      "status": "structural",
+      "verify": "symbolic"
+    },
+    {
+      "id": "conclusion_OM_equals_ON",
+      "type": "equal_length",
+      "segments": [
+        "OM",
+        "ON"
+      ],
+      "status": "conclusion",
+      "verify": "numeric"
+    }
+  ],
+  "checks": [
+    {
+      "id": "K_inside_BMC",
+      "expression": "IsInRegion(K,poly_BMC)",
+      "expected": true,
+      "verify": "numeric",
+      "status": "given"
+    },
+    {
+      "id": "L_inside_BNC",
+      "expression": "IsInRegion(L,poly_BNC)",
+      "expected": true,
+      "verify": "numeric",
+      "status": "given"
+    },
+    {
+      "id": "K_inside_ABL",
+      "expression": "IsInRegion(K,poly_ABL)",
+      "expected": true,
+      "verify": "numeric",
+      "status": "given"
+    },
+    {
+      "id": "L_inside_AKC",
+      "expression": "IsInRegion(L,poly_AKC)",
+      "expected": true,
+      "verify": "numeric",
+      "status": "given"
+    },
+    {
+      "id": "K_not_on_BM",
+      "expression": "AreCollinear(B,M,K)",
+      "expected": false,
+      "verify": "numeric",
+      "status": "strictness"
+    },
+    {
+      "id": "K_not_on_MC",
+      "expression": "AreCollinear(M,C,K)",
+      "expected": false,
+      "verify": "numeric",
+      "status": "strictness"
+    },
+    {
+      "id": "K_not_on_CB",
+      "expression": "AreCollinear(C,B,K)",
+      "expected": false,
+      "verify": "numeric",
+      "status": "strictness"
+    },
+    {
+      "id": "L_not_on_BN",
+      "expression": "AreCollinear(B,N,L)",
+      "expected": false,
+      "verify": "numeric",
+      "status": "strictness"
+    },
+    {
+      "id": "L_not_on_NC",
+      "expression": "AreCollinear(N,C,L)",
+      "expected": false,
+      "verify": "numeric",
+      "status": "strictness"
+    },
+    {
+      "id": "L_not_on_CB",
+      "expression": "AreCollinear(C,B,L)",
+      "expected": false,
+      "verify": "numeric",
+      "status": "strictness"
+    },
+    {
+      "id": "K_not_on_AB",
+      "expression": "AreCollinear(A,B,K)",
+      "expected": false,
+      "verify": "numeric",
+      "status": "strictness"
+    },
+    {
+      "id": "K_not_on_BL",
+      "expression": "AreCollinear(B,L,K)",
+      "expected": false,
+      "verify": "numeric",
+      "status": "strictness"
+    },
+    {
+      "id": "K_not_on_LA",
+      "expression": "AreCollinear(L,A,K)",
+      "expected": false,
+      "verify": "numeric",
+      "status": "strictness"
+    },
+    {
+      "id": "L_not_on_AK",
+      "expression": "AreCollinear(A,K,L)",
+      "expected": false,
+      "verify": "numeric",
+      "status": "strictness"
+    },
+    {
+      "id": "L_not_on_KC",
+      "expression": "AreCollinear(K,C,L)",
+      "expected": false,
+      "verify": "numeric",
+      "status": "strictness"
+    },
+    {
+      "id": "L_not_on_CA",
+      "expression": "AreCollinear(C,A,L)",
+      "expected": false,
+      "verify": "numeric",
+      "status": "strictness"
+    }
+  ],
+  "layout": {
+    "trials": 0,
+    "seed": 20260717,
+    "variables": {},
+    "constraints": []
+  },
+  "execution": {
+    "maxLayoutTrials": 1000,
+    "requestedLayoutTrials": 0,
+    "effectiveLayoutTrials": 0,
+    "maxStatementProofs": 32,
+    "requestedStatementProofs": 1,
+    "casTimeoutMs": 45000,
+    "proofTimeoutMs": 45000,
+    "symbolicAccidentalRelationAudit": true
+  },
+  "audit": {
+    "enabled": true,
+    "symbolicFilter": true,
+    "maxSymbolicChecks": 32,
+    "maxPointsForConcyclic": 8,
+    "failOnSeverity": "medium",
+    "thresholds": {
+      "pointCrowding": 0.035,
+      "collinear": 0.025,
+      "parallelDegrees": 2,
+      "perpendicularDegrees": 2,
+      "equalLengthRelative": 0.02,
+      "equalAngleDegrees": 1.5,
+      "specialAngleDegrees": 1.25,
+      "concyclicRelative": 0.018,
+      "concurrentRelative": 0
+    },
+    "specialAngles": [
+      30,
+      45,
+      60,
+      90,
+      120,
+      135,
+      150
+    ]
+  },
+  "exports": {
+    "ggb": true,
+    "png": true,
+    "svg": true,
+    "xml": true
+  }
+}

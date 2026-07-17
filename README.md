@@ -71,7 +71,9 @@ Normal deliverables are:
 - an `.audit.json` verification report;
 - optional SVG, GeoGebra XML, and TikZ.
 
-## Example
+## Examples
+
+### Triangle midline
 
 The repository includes a triangle-midline example in [`examples/triangle-midline`](examples/triangle-midline):
 
@@ -81,6 +83,18 @@ The repository includes a triangle-midline example in [`examples/triangle-midlin
 - [`triangle-midline.tex`](examples/triangle-midline/triangle-midline.tex)
 
 The midline parallelism conclusion is symbolically verified and the generated `.ggb` passes round-trip loading.
+
+### Competition showcase: IMO 2026 Problem 2
+
+[![IMO 2026 Problem 2 GeoGebra preview](examples/imo-2026-problem-2/imo-2026-problem-2.png)](examples/imo-2026-problem-2/README.md)
+
+The [IMO 2026 Problem 2 showcase](examples/imo-2026-problem-2/README.md) demonstrates the strict workflow on a dense olympiad construction:
+
+- [open the dynamic `.ggb`](examples/imo-2026-problem-2/imo-2026-problem-2.ggb);
+- [inspect the strict audit](examples/imo-2026-problem-2/imo-2026-problem-2.audit.json);
+- [inspect the supplemental finite-segment audit](examples/imo-2026-problem-2/visible-segment-audit.json).
+
+All 31 declared checks pass, the 62-object file round-trips without missing or undefined objects, and the finite-segment audit finds no medium- or high-severity visible issue. The construction numerically verifies `OM = ON` for this legal representative configuration; it is a checked diagram, not a proof.
 
 ## Requirements
 

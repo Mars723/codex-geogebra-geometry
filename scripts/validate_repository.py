@@ -19,7 +19,19 @@ SPEC_TEMPLATE = (
     / "assets"
     / "spec-template.json"
 )
-EXAMPLE_GGB = ROOT / "examples" / "triangle-midline" / "triangle-midline.ggb"
+EXAMPLE_GGB_FILES = (
+    ROOT / "examples" / "triangle-midline" / "triangle-midline.ggb",
+    ROOT / "examples" / "imo-2026-problem-2" / "imo-2026-problem-2.ggb",
+)
+IMO_AUDIT = (
+    ROOT
+    / "examples"
+    / "imo-2026-problem-2"
+    / "imo-2026-problem-2.audit.json"
+)
+IMO_VISIBLE_AUDIT = (
+    ROOT / "examples" / "imo-2026-problem-2" / "visible-segment-audit.json"
+)
 
 errors = []
 
@@ -35,6 +47,8 @@ def load_json(path):
 manifest = load_json(MANIFEST)
 marketplace = load_json(MARKETPLACE)
 spec_template = load_json(SPEC_TEMPLATE)
+imo_audit = load_json(IMO_AUDIT)
+imo_visible_audit = load_json(IMO_VISIBLE_AUDIT)
 
 for field in ("name", "version", "description", "author", "skills", "interface"):
     if field not in manifest:
@@ -120,12 +134,40 @@ for path in ROOT.rglob("*"):
         if marker in text:
             errors.append(f"{path.relative_to(ROOT)} contains placeholder {marker}")
 
-if not zipfile.is_zipfile(EXAMPLE_GGB):
-    errors.append("example .ggb is not a ZIP-based GeoGebra document")
-else:
-    with zipfile.ZipFile(EXAMPLE_GGB) as archive:
+for example_ggb in EXAMPLE_GGB_FILES:
+    relative_path = example_ggb.relative_to(ROOT)
+    if not zipfile.is_zipfile(example_ggb):
+        errors.append(f"{relative_path} is not a ZIP-based GeoGebra document")
+        continue
+    with zipfile.ZipFile(example_ggb) as archive:
         if "geogebra.xml" not in archive.namelist():
-            errors.append("example .ggb does not contain geogebra.xml")
+            errors.append(f"{relative_path} does not contain geogebra.xml")
+
+if not imo_audit.get("successful"):
+    errors.append("IMO 2026 Problem 2 audit is not successful")
+if imo_audit.get("mode") != "strict":
+    errors.append("IMO 2026 Problem 2 showcase must be generated in strict mode")
+if imo_audit.get("failedChecks"):
+    errors.append("IMO 2026 Problem 2 audit contains failed checks")
+imo_checks = imo_audit.get("checks", [])
+if not imo_checks or any(not check.get("passed") for check in imo_checks):
+    errors.append("IMO 2026 Problem 2 does not have a complete passing check set")
+if imo_audit.get("audit", {}).get("severeIssues"):
+    errors.append("IMO 2026 Problem 2 audit contains severe accidental relations")
+
+imo_roundtrip = imo_audit.get("roundtrip", {})
+if not imo_roundtrip.get("zipSignature") or not imo_roundtrip.get("loaded"):
+    errors.append("IMO 2026 Problem 2 .ggb did not pass round-trip loading")
+if imo_roundtrip.get("missing") or imo_roundtrip.get("undefined"):
+    errors.append("IMO 2026 Problem 2 round-trip has missing or undefined objects")
+
+visible_issues = imo_visible_audit.get("visibleFiniteSegmentAudit", {}).get(
+    "mediumOrHighIssues"
+)
+if visible_issues is None:
+    errors.append("IMO 2026 Problem 2 visible-segment audit is incomplete")
+elif visible_issues:
+    errors.append("IMO 2026 Problem 2 visible-segment audit has serious issues")
 
 if errors:
     print("Repository validation failed:")

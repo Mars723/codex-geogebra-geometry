@@ -1,0 +1,2227 @@
+{
+  "successful": true,
+  "title": "IMO 2026 Problem 2",
+  "mode": "strict",
+  "execution": {
+    "maxLayoutTrials": 1000,
+    "requestedLayoutTrials": 0,
+    "effectiveLayoutTrials": 0,
+    "maxStatementProofs": 32,
+    "requestedStatementProofs": 1,
+    "casTimeoutMs": 45000,
+    "proofTimeoutMs": 45000,
+    "symbolicAccidentalRelationAudit": true
+  },
+  "engine": {
+    "version": "5.2.899.0",
+    "module": "file:///Applications/GeoGebra%20Calculator%20Suite.app/Contents/Resources/app/html/web3d/web3d.nocache.mjs",
+    "browser": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "casReady": true
+  },
+  "outputs": {
+    "ggb": {
+      "path": "examples/imo-2026-problem-2/imo-2026-problem-2.ggb",
+      "bytes": 7281
+    },
+    "png": {
+      "path": "examples/imo-2026-problem-2/imo-2026-problem-2.png",
+      "bytes": 306476
+    },
+    "svg": {
+      "path": "examples/imo-2026-problem-2/imo-2026-problem-2.svg",
+      "bytes": 24955
+    },
+    "xml": {
+      "path": "examples/imo-2026-problem-2/imo-2026-problem-2.geogebra.xml",
+      "bytes": 32521
+    },
+    "spec": {
+      "path": "examples/imo-2026-problem-2/imo-2026-problem-2.spec.json",
+      "bytes": 16960
+    }
+  },
+  "commands": [
+    {
+      "command": "A=(-1.23,8.12)",
+      "ok": true,
+      "created": [
+        "A"
+      ],
+      "defined": [
+        "A"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "B=(-4,0)",
+      "ok": true,
+      "created": [
+        "B"
+      ],
+      "defined": [
+        "B"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "C=(8,0)",
+      "ok": true,
+      "created": [
+        "C"
+      ],
+      "defined": [
+        "C"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "M=Midpoint(A,B)",
+      "ok": true,
+      "created": [
+        "M"
+      ],
+      "defined": [
+        "M"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "N=Midpoint(A,C)",
+      "ok": true,
+      "created": [
+        "N"
+      ],
+      "defined": [
+        "N"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "tAlpha=16.280179549912°",
+      "ok": true,
+      "created": [
+        "tAlpha"
+      ],
+      "defined": [
+        "tAlpha"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "tBeta=40.195432514258°",
+      "ok": true,
+      "created": [
+        "tBeta"
+      ],
+      "defined": [
+        "tBeta"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "tGamma=15.612668315256°",
+      "ok": true,
+      "created": [
+        "tGamma"
+      ],
+      "defined": [
+        "tGamma"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "A_B_alpha=Rotate(A,-tAlpha,B)",
+      "ok": true,
+      "created": [
+        "A_B_alpha"
+      ],
+      "defined": [
+        "A_B_alpha"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "B_M_gamma=Rotate(B,tGamma,M)",
+      "ok": true,
+      "created": [
+        "B_M_gamma"
+      ],
+      "defined": [
+        "B_M_gamma"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "ray_BK=Ray(B,A_B_alpha)",
+      "ok": true,
+      "created": [
+        "ray_BK"
+      ],
+      "defined": [
+        "ray_BK"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "ray_MK=Ray(M,B_M_gamma)",
+      "ok": true,
+      "created": [
+        "ray_MK"
+      ],
+      "defined": [
+        "ray_MK"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "K=Intersect(ray_BK,ray_MK)",
+      "ok": true,
+      "created": [
+        "K"
+      ],
+      "defined": [
+        "K"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "A_C_alpha=Rotate(A,tAlpha,C)",
+      "ok": true,
+      "created": [
+        "A_C_alpha"
+      ],
+      "defined": [
+        "A_C_alpha"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "K_B_beta=Rotate(K,-tBeta,B)",
+      "ok": true,
+      "created": [
+        "K_B_beta"
+      ],
+      "defined": [
+        "K_B_beta"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "ray_CL=Ray(C,A_C_alpha)",
+      "ok": true,
+      "created": [
+        "ray_CL"
+      ],
+      "defined": [
+        "ray_CL"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "ray_BL=Ray(B,K_B_beta)",
+      "ok": true,
+      "created": [
+        "ray_BL"
+      ],
+      "defined": [
+        "ray_BL"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "L=Intersect(ray_CL,ray_BL)",
+      "ok": true,
+      "created": [
+        "L"
+      ],
+      "defined": [
+        "L"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "C_N_beta=Rotate(C,-tBeta,N)",
+      "ok": true,
+      "created": [
+        "C_N_beta"
+      ],
+      "defined": [
+        "C_N_beta"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "ray_NL=Ray(N,C_N_beta)",
+      "ok": true,
+      "created": [
+        "ray_NL"
+      ],
+      "defined": [
+        "ray_NL"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "L_C_gamma=Rotate(L,tGamma,C)",
+      "ok": true,
+      "created": [
+        "L_C_gamma"
+      ],
+      "defined": [
+        "L_C_gamma"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "ray_CK=Ray(C,L_C_gamma)",
+      "ok": true,
+      "created": [
+        "ray_CK"
+      ],
+      "defined": [
+        "ray_CK"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "side_AB=Segment(A,B)",
+      "ok": true,
+      "created": [
+        "side_AB"
+      ],
+      "defined": [
+        "side_AB"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "side_BC=Segment(B,C)",
+      "ok": true,
+      "created": [
+        "side_BC"
+      ],
+      "defined": [
+        "side_BC"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "side_CA=Segment(C,A)",
+      "ok": true,
+      "created": [
+        "side_CA"
+      ],
+      "defined": [
+        "side_CA"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "seg_MC=Segment(M,C)",
+      "ok": true,
+      "created": [
+        "seg_MC"
+      ],
+      "defined": [
+        "seg_MC"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "seg_BN=Segment(B,N)",
+      "ok": true,
+      "created": [
+        "seg_BN"
+      ],
+      "defined": [
+        "seg_BN"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "seg_AK=Segment(A,K)",
+      "ok": true,
+      "created": [
+        "seg_AK"
+      ],
+      "defined": [
+        "seg_AK"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "seg_KC=Segment(K,C)",
+      "ok": true,
+      "created": [
+        "seg_KC"
+      ],
+      "defined": [
+        "seg_KC"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "seg_AL=Segment(A,L)",
+      "ok": true,
+      "created": [
+        "seg_AL"
+      ],
+      "defined": [
+        "seg_AL"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "seg_BL=Segment(B,L)",
+      "ok": true,
+      "created": [
+        "seg_BL"
+      ],
+      "defined": [
+        "seg_BL"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "seg_BK=Segment(B,K)",
+      "ok": true,
+      "created": [
+        "seg_BK"
+      ],
+      "defined": [
+        "seg_BK"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "seg_CL=Segment(C,L)",
+      "ok": true,
+      "created": [
+        "seg_CL"
+      ],
+      "defined": [
+        "seg_CL"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "seg_NL=Segment(N,L)",
+      "ok": true,
+      "created": [
+        "seg_NL"
+      ],
+      "defined": [
+        "seg_NL"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "seg_MK=Segment(M,K)",
+      "ok": true,
+      "created": [
+        "seg_MK"
+      ],
+      "defined": [
+        "seg_MK"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "seg_KL=Segment(K,L)",
+      "ok": true,
+      "created": [
+        "seg_KL"
+      ],
+      "defined": [
+        "seg_KL"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "omega=Circle(A,K,L)",
+      "ok": true,
+      "created": [
+        "omega"
+      ],
+      "defined": [
+        "omega"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "O=Center(omega)",
+      "ok": true,
+      "created": [
+        "O"
+      ],
+      "defined": [
+        "O"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "seg_OM=Segment(O,M)",
+      "ok": true,
+      "created": [
+        "seg_OM"
+      ],
+      "defined": [
+        "seg_OM"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "seg_ON=Segment(O,N)",
+      "ok": true,
+      "created": [
+        "seg_ON"
+      ],
+      "defined": [
+        "seg_ON"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "ang_KBA=Angle(K,B,A)",
+      "ok": true,
+      "created": [
+        "ang_KBA"
+      ],
+      "defined": [
+        "ang_KBA"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "ang_ACL=Angle(A,C,L)",
+      "ok": true,
+      "created": [
+        "ang_ACL"
+      ],
+      "defined": [
+        "ang_ACL"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "ang_LBK=Angle(L,B,K)",
+      "ok": true,
+      "created": [
+        "ang_LBK"
+      ],
+      "defined": [
+        "ang_LBK"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "ang_LNC=Angle(L,N,C)",
+      "ok": true,
+      "created": [
+        "ang_LNC"
+      ],
+      "defined": [
+        "ang_LNC"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "ang_LCK=Angle(L,C,K)",
+      "ok": true,
+      "created": [
+        "ang_LCK"
+      ],
+      "defined": [
+        "ang_LCK"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "ang_BMK=Angle(B,M,K)",
+      "ok": true,
+      "created": [
+        "ang_BMK"
+      ],
+      "defined": [
+        "ang_BMK"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "poly_BMC=Polygon(B,M,C)",
+      "ok": true,
+      "created": [
+        "poly_BMC",
+        "c",
+        "b",
+        "m"
+      ],
+      "defined": [
+        "poly_BMC",
+        "c",
+        "b",
+        "m"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "poly_BNC=Polygon(B,N,C)",
+      "ok": true,
+      "created": [
+        "poly_BNC",
+        "c_1",
+        "b_1",
+        "n"
+      ],
+      "defined": [
+        "poly_BNC",
+        "c_1",
+        "b_1",
+        "n"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "poly_ABL=Polygon(A,B,L)",
+      "ok": true,
+      "created": [
+        "poly_ABL",
+        "l",
+        "a",
+        "b_2"
+      ],
+      "defined": [
+        "poly_ABL",
+        "l",
+        "a",
+        "b_2"
+      ],
+      "undefined": []
+    },
+    {
+      "command": "poly_AKC=Polygon(A,K,C)",
+      "ok": true,
+      "created": [
+        "poly_AKC",
+        "c_2",
+        "a_1",
+        "k"
+      ],
+      "defined": [
+        "poly_AKC",
+        "c_2",
+        "a_1",
+        "k"
+      ],
+      "undefined": []
+    }
+  ],
+  "missingObjects": [],
+  "undefinedObjects": [],
+  "layout": {
+    "enabled": false,
+    "trials": 0,
+    "initialScore": null,
+    "bestScore": null,
+    "coordinates": {}
+  },
+  "checks": [
+    {
+      "id": "M_on_AB",
+      "status": "construction",
+      "expression": "AreCollinear(A,M,B)",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "M_midpoint_AB",
+      "status": "construction",
+      "expression": "Distance(A,M)==Distance(M,B)",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "N_on_AC",
+      "status": "construction",
+      "expression": "AreCollinear(A,N,C)",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "N_midpoint_AC",
+      "status": "construction",
+      "expression": "Distance(A,N)==Distance(N,C)",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "angle_pair_alpha",
+      "status": "given",
+      "expression": "ang_KBA==ang_ACL",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "angle_pair_beta",
+      "status": "given",
+      "expression": "ang_LBK==ang_LNC",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "angle_pair_gamma",
+      "status": "given",
+      "expression": "ang_LCK==ang_BMK",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "A_on_omega",
+      "status": "construction",
+      "expression": "Distance(A,omega)==0",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "K_on_omega",
+      "status": "construction",
+      "expression": "Distance(K,omega)==0",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "L_on_omega",
+      "status": "construction",
+      "expression": "Distance(L,omega)==0",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "O_radius_OA_OK",
+      "status": "construction",
+      "expression": "Distance(O,A)==Distance(O,K)",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "O_radius_OK_OL",
+      "status": "construction",
+      "expression": "Distance(O,K)==Distance(O,L)",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "O_radius_OA_OL",
+      "status": "construction",
+      "expression": "Distance(O,A)==Distance(O,L)",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "midline_parallel",
+      "status": "structural",
+      "expression": "AreParallel(Line(M,N),Line(B,C))",
+      "expected": true,
+      "verify": "symbolic",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": "true",
+      "proofValue": "zzGgbGenProof16 = {true, {\"AreEqual[A,B]\"}}",
+      "passed": true
+    },
+    {
+      "id": "conclusion_OM_equals_ON",
+      "status": "conclusion",
+      "expression": "seg_OM==seg_ON",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "K_inside_BMC",
+      "status": "given",
+      "expression": "IsInRegion(K,poly_BMC)",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "L_inside_BNC",
+      "status": "given",
+      "expression": "IsInRegion(L,poly_BNC)",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "K_inside_ABL",
+      "status": "given",
+      "expression": "IsInRegion(K,poly_ABL)",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "L_inside_AKC",
+      "status": "given",
+      "expression": "IsInRegion(L,poly_AKC)",
+      "expected": true,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": true,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "K_not_on_BM",
+      "status": "strictness",
+      "expression": "AreCollinear(B,M,K)",
+      "expected": false,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": false,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "K_not_on_MC",
+      "status": "strictness",
+      "expression": "AreCollinear(M,C,K)",
+      "expected": false,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": false,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "K_not_on_CB",
+      "status": "strictness",
+      "expression": "AreCollinear(C,B,K)",
+      "expected": false,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": false,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "L_not_on_BN",
+      "status": "strictness",
+      "expression": "AreCollinear(B,N,L)",
+      "expected": false,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": false,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "L_not_on_NC",
+      "status": "strictness",
+      "expression": "AreCollinear(N,C,L)",
+      "expected": false,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": false,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "L_not_on_CB",
+      "status": "strictness",
+      "expression": "AreCollinear(C,B,L)",
+      "expected": false,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": false,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "K_not_on_AB",
+      "status": "strictness",
+      "expression": "AreCollinear(A,B,K)",
+      "expected": false,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": false,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "K_not_on_BL",
+      "status": "strictness",
+      "expression": "AreCollinear(B,L,K)",
+      "expected": false,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": false,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "K_not_on_LA",
+      "status": "strictness",
+      "expression": "AreCollinear(L,A,K)",
+      "expected": false,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": false,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "L_not_on_AK",
+      "status": "strictness",
+      "expression": "AreCollinear(A,K,L)",
+      "expected": false,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": false,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "L_not_on_KC",
+      "status": "strictness",
+      "expression": "AreCollinear(K,C,L)",
+      "expected": false,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": false,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    },
+    {
+      "id": "L_not_on_CA",
+      "status": "strictness",
+      "expression": "AreCollinear(C,A,L)",
+      "expected": false,
+      "verify": "numeric",
+      "commandOk": true,
+      "defined": true,
+      "numeric": false,
+      "proof": null,
+      "proofValue": null,
+      "passed": true
+    }
+  ],
+  "failedChecks": [],
+  "audit": {
+    "scale": 6.1466921998746615,
+    "thresholds": {
+      "pointCrowding": 0.035,
+      "collinear": 0.025,
+      "parallelDegrees": 2,
+      "perpendicularDegrees": 2,
+      "equalLengthRelative": 0.02,
+      "equalAngleDegrees": 1.5,
+      "specialAngleDegrees": 1.25,
+      "concyclicRelative": 0.018,
+      "concurrentRelative": 0
+    },
+    "issues": [
+      {
+        "type": "collinear",
+        "key": "collinear:A|B|M",
+        "metric": 2.4132889528623532e-17,
+        "threshold": 0.025,
+        "severity": "high",
+        "description": "A, B, M look collinear.",
+        "expression": "AreCollinear(A,B,M)",
+        "allowed": true,
+        "details": {
+          "points": [
+            "A",
+            "B",
+            "M"
+          ]
+        },
+        "classification": "allowed"
+      },
+      {
+        "type": "collinear",
+        "key": "collinear:A|C|N",
+        "metric": 0,
+        "threshold": 0.025,
+        "severity": "high",
+        "description": "A, C, N look collinear.",
+        "expression": "AreCollinear(A,C,N)",
+        "allowed": true,
+        "details": {
+          "points": [
+            "A",
+            "C",
+            "N"
+          ]
+        },
+        "classification": "allowed"
+      },
+      {
+        "type": "equal_length",
+        "key": "equal_length:AB|BN",
+        "metric": 0.01771961870477504,
+        "threshold": 0.02,
+        "severity": "low",
+        "description": "AB and BN look equal in length.",
+        "expression": "side_AB==seg_BN",
+        "allowed": false,
+        "details": {
+          "segments": [
+            "AB",
+            "BN"
+          ],
+          "lengths": [
+            8.579469680580495,
+            8.42744474915143
+          ]
+        },
+        "symbolic": "false",
+        "proofValue": "zzGgbGenProof35 = {false}",
+        "classification": "accidental"
+      },
+      {
+        "type": "equal_length",
+        "key": "equal_length:AM|MB",
+        "metric": 0,
+        "threshold": 0.02,
+        "severity": "low",
+        "description": "AM and MB look equal in length.",
+        "expression": "Distance(A,M)==Distance(M,B)",
+        "allowed": true,
+        "details": {
+          "segments": [
+            "AM",
+            "MB"
+          ],
+          "lengths": [
+            4.289734840290247,
+            4.289734840290247
+          ]
+        },
+        "classification": "allowed"
+      },
+      {
+        "type": "equal_length",
+        "key": "equal_length:AN|NC",
+        "metric": 0,
+        "threshold": 0.02,
+        "severity": "low",
+        "description": "AN and NC look equal in length.",
+        "expression": "Distance(A,N)==Distance(N,C)",
+        "allowed": true,
+        "details": {
+          "segments": [
+            "AN",
+            "NC"
+          ],
+          "lengths": [
+            6.1466921998746615,
+            6.1466921998746615
+          ]
+        },
+        "classification": "allowed"
+      },
+      {
+        "type": "equal_length",
+        "key": "equal_length:AK|KL",
+        "metric": 0.011438033432482713,
+        "threshold": 0.02,
+        "severity": "low",
+        "description": "AK and KL look equal in length.",
+        "expression": "seg_AK==seg_KL",
+        "allowed": false,
+        "details": {
+          "segments": [
+            "AK",
+            "KL"
+          ],
+          "lengths": [
+            6.5107801981571285,
+            6.436309676579061
+          ]
+        },
+        "symbolic": "unresolved",
+        "proofValue": "zzGgbGenProof37 = {}",
+        "classification": "unresolved"
+      },
+      {
+        "type": "equal_length",
+        "key": "equal_length:AL|BL",
+        "metric": 0.01373471495918651,
+        "threshold": 0.02,
+        "severity": "low",
+        "description": "AL and BL look equal in length.",
+        "expression": "seg_AL==seg_BL",
+        "allowed": false,
+        "details": {
+          "segments": [
+            "AL",
+            "BL"
+          ],
+          "lengths": [
+            7.839871969322616,
+            7.949049903949715
+          ]
+        },
+        "symbolic": "unresolved",
+        "proofValue": "zzGgbGenProof39 = {}",
+        "classification": "unresolved"
+      },
+      {
+        "type": "equal_length",
+        "key": "equal_length:OM|ON",
+        "metric": 3.340474716977431e-14,
+        "threshold": 0.02,
+        "severity": "low",
+        "description": "OM and ON look equal in length.",
+        "expression": "seg_OM==seg_ON",
+        "allowed": true,
+        "details": {
+          "segments": [
+            "OM",
+            "ON"
+          ],
+          "lengths": [
+            3.017782176994754,
+            3.0177821769948547
+          ]
+        },
+        "classification": "allowed"
+      },
+      {
+        "type": "equal_length",
+        "key": "equal_length:OA|OK",
+        "metric": 4.367454168700763e-16,
+        "threshold": 0.02,
+        "severity": "low",
+        "description": "OA and OK look equal in length.",
+        "expression": "Distance(O,A)==Distance(O,K)",
+        "allowed": true,
+        "details": {
+          "segments": [
+            "OA",
+            "OK"
+          ],
+          "lengths": [
+            4.067259256274424,
+            4.067259256274426
+          ]
+        },
+        "classification": "allowed"
+      },
+      {
+        "type": "equal_length",
+        "key": "equal_length:OA|OL",
+        "metric": 2.1837270843503818e-16,
+        "threshold": 0.02,
+        "severity": "low",
+        "description": "OA and OL look equal in length.",
+        "expression": "Distance(O,A)==Distance(O,L)",
+        "allowed": true,
+        "details": {
+          "segments": [
+            "OA",
+            "OL"
+          ],
+          "lengths": [
+            4.067259256274424,
+            4.067259256274425
+          ]
+        },
+        "classification": "allowed"
+      },
+      {
+        "type": "equal_length",
+        "key": "equal_length:OK|OL",
+        "metric": 2.1837270843503815e-16,
+        "threshold": 0.02,
+        "severity": "low",
+        "description": "OK and OL look equal in length.",
+        "expression": "Distance(O,K)==Distance(O,L)",
+        "allowed": true,
+        "details": {
+          "segments": [
+            "OK",
+            "OL"
+          ],
+          "lengths": [
+            4.067259256274426,
+            4.067259256274425
+          ]
+        },
+        "classification": "allowed"
+      },
+      {
+        "type": "equal_angle",
+        "key": "equal_angle:ACL|KBA",
+        "metric": 7.105427357601002e-14,
+        "threshold": 1.5,
+        "severity": "low",
+        "description": "KBA and ACL look equal.",
+        "expression": "ang_KBA==ang_ACL",
+        "allowed": true,
+        "details": {
+          "angles": [
+            "KBA",
+            "ACL"
+          ],
+          "values": [
+            16.280179549911967,
+            16.280179549912038
+          ]
+        },
+        "classification": "allowed"
+      },
+      {
+        "type": "equal_angle",
+        "key": "equal_angle:KBA|LCK",
+        "metric": 0.6675112346560343,
+        "threshold": 1.5,
+        "severity": "low",
+        "description": "KBA and LCK look equal.",
+        "expression": "ang_KBA==ang_LCK",
+        "allowed": false,
+        "details": {
+          "angles": [
+            "KBA",
+            "LCK"
+          ],
+          "values": [
+            16.280179549911967,
+            15.612668315255933
+          ]
+        },
+        "symbolic": "unresolved",
+        "proofValue": "zzGgbGenProof41 = {}",
+        "classification": "unresolved"
+      },
+      {
+        "type": "equal_angle",
+        "key": "equal_angle:BMK|KBA",
+        "metric": 0.6675112346559384,
+        "threshold": 1.5,
+        "severity": "low",
+        "description": "KBA and BMK look equal.",
+        "expression": "ang_KBA==ang_BMK",
+        "allowed": false,
+        "details": {
+          "angles": [
+            "KBA",
+            "BMK"
+          ],
+          "values": [
+            16.280179549911967,
+            15.612668315256029
+          ]
+        },
+        "symbolic": "unresolved",
+        "proofValue": "zzGgbGenProof43 = {}",
+        "classification": "unresolved"
+      },
+      {
+        "type": "equal_angle",
+        "key": "equal_angle:ACL|LCK",
+        "metric": 0.6675112346561054,
+        "threshold": 1.5,
+        "severity": "low",
+        "description": "ACL and LCK look equal.",
+        "expression": "ang_ACL==ang_LCK",
+        "allowed": false,
+        "details": {
+          "angles": [
+            "ACL",
+            "LCK"
+          ],
+          "values": [
+            16.280179549912038,
+            15.612668315255933
+          ]
+        },
+        "symbolic": "unresolved",
+        "proofValue": "zzGgbGenProof45 = {}",
+        "classification": "unresolved"
+      },
+      {
+        "type": "equal_angle",
+        "key": "equal_angle:ACL|BMK",
+        "metric": 0.6675112346560095,
+        "threshold": 1.5,
+        "severity": "low",
+        "description": "ACL and BMK look equal.",
+        "expression": "ang_ACL==ang_BMK",
+        "allowed": false,
+        "details": {
+          "angles": [
+            "ACL",
+            "BMK"
+          ],
+          "values": [
+            16.280179549912038,
+            15.612668315256029
+          ]
+        },
+        "symbolic": "unresolved",
+        "proofValue": "zzGgbGenProof47 = {}",
+        "classification": "unresolved"
+      },
+      {
+        "type": "equal_angle",
+        "key": "equal_angle:LBK|LNC",
+        "metric": 2.3518964553659316e-12,
+        "threshold": 1.5,
+        "severity": "low",
+        "description": "LBK and LNC look equal.",
+        "expression": "ang_LBK==ang_LNC",
+        "allowed": true,
+        "details": {
+          "angles": [
+            "LBK",
+            "LNC"
+          ],
+          "values": [
+            40.19543251425802,
+            40.195432514260375
+          ]
+        },
+        "classification": "allowed"
+      },
+      {
+        "type": "equal_angle",
+        "key": "equal_angle:BMK|LCK",
+        "metric": 9.592326932761353e-14,
+        "threshold": 1.5,
+        "severity": "low",
+        "description": "LCK and BMK look equal.",
+        "expression": "ang_LCK==ang_BMK",
+        "allowed": true,
+        "details": {
+          "angles": [
+            "LCK",
+            "BMK"
+          ],
+          "values": [
+            15.612668315255933,
+            15.612668315256029
+          ]
+        },
+        "classification": "allowed"
+      }
+    ],
+    "accidentalIssues": [
+      {
+        "type": "equal_length",
+        "key": "equal_length:AB|BN",
+        "metric": 0.01771961870477504,
+        "threshold": 0.02,
+        "severity": "low",
+        "description": "AB and BN look equal in length.",
+        "expression": "side_AB==seg_BN",
+        "allowed": false,
+        "details": {
+          "segments": [
+            "AB",
+            "BN"
+          ],
+          "lengths": [
+            8.579469680580495,
+            8.42744474915143
+          ]
+        },
+        "symbolic": "false",
+        "proofValue": "zzGgbGenProof35 = {false}",
+        "classification": "accidental"
+      },
+      {
+        "type": "equal_length",
+        "key": "equal_length:AK|KL",
+        "metric": 0.011438033432482713,
+        "threshold": 0.02,
+        "severity": "low",
+        "description": "AK and KL look equal in length.",
+        "expression": "seg_AK==seg_KL",
+        "allowed": false,
+        "details": {
+          "segments": [
+            "AK",
+            "KL"
+          ],
+          "lengths": [
+            6.5107801981571285,
+            6.436309676579061
+          ]
+        },
+        "symbolic": "unresolved",
+        "proofValue": "zzGgbGenProof37 = {}",
+        "classification": "unresolved"
+      },
+      {
+        "type": "equal_length",
+        "key": "equal_length:AL|BL",
+        "metric": 0.01373471495918651,
+        "threshold": 0.02,
+        "severity": "low",
+        "description": "AL and BL look equal in length.",
+        "expression": "seg_AL==seg_BL",
+        "allowed": false,
+        "details": {
+          "segments": [
+            "AL",
+            "BL"
+          ],
+          "lengths": [
+            7.839871969322616,
+            7.949049903949715
+          ]
+        },
+        "symbolic": "unresolved",
+        "proofValue": "zzGgbGenProof39 = {}",
+        "classification": "unresolved"
+      },
+      {
+        "type": "equal_angle",
+        "key": "equal_angle:KBA|LCK",
+        "metric": 0.6675112346560343,
+        "threshold": 1.5,
+        "severity": "low",
+        "description": "KBA and LCK look equal.",
+        "expression": "ang_KBA==ang_LCK",
+        "allowed": false,
+        "details": {
+          "angles": [
+            "KBA",
+            "LCK"
+          ],
+          "values": [
+            16.280179549911967,
+            15.612668315255933
+          ]
+        },
+        "symbolic": "unresolved",
+        "proofValue": "zzGgbGenProof41 = {}",
+        "classification": "unresolved"
+      },
+      {
+        "type": "equal_angle",
+        "key": "equal_angle:BMK|KBA",
+        "metric": 0.6675112346559384,
+        "threshold": 1.5,
+        "severity": "low",
+        "description": "KBA and BMK look equal.",
+        "expression": "ang_KBA==ang_BMK",
+        "allowed": false,
+        "details": {
+          "angles": [
+            "KBA",
+            "BMK"
+          ],
+          "values": [
+            16.280179549911967,
+            15.612668315256029
+          ]
+        },
+        "symbolic": "unresolved",
+        "proofValue": "zzGgbGenProof43 = {}",
+        "classification": "unresolved"
+      },
+      {
+        "type": "equal_angle",
+        "key": "equal_angle:ACL|LCK",
+        "metric": 0.6675112346561054,
+        "threshold": 1.5,
+        "severity": "low",
+        "description": "ACL and LCK look equal.",
+        "expression": "ang_ACL==ang_LCK",
+        "allowed": false,
+        "details": {
+          "angles": [
+            "ACL",
+            "LCK"
+          ],
+          "values": [
+            16.280179549912038,
+            15.612668315255933
+          ]
+        },
+        "symbolic": "unresolved",
+        "proofValue": "zzGgbGenProof45 = {}",
+        "classification": "unresolved"
+      },
+      {
+        "type": "equal_angle",
+        "key": "equal_angle:ACL|BMK",
+        "metric": 0.6675112346560095,
+        "threshold": 1.5,
+        "severity": "low",
+        "description": "ACL and BMK look equal.",
+        "expression": "ang_ACL==ang_BMK",
+        "allowed": false,
+        "details": {
+          "angles": [
+            "ACL",
+            "BMK"
+          ],
+          "values": [
+            16.280179549912038,
+            15.612668315256029
+          ]
+        },
+        "symbolic": "unresolved",
+        "proofValue": "zzGgbGenProof47 = {}",
+        "classification": "unresolved"
+      }
+    ],
+    "severeIssues": [],
+    "pointCoordinates": [
+      {
+        "name": "A",
+        "x": -1.23,
+        "y": 8.12
+      },
+      {
+        "name": "B",
+        "x": -4,
+        "y": 0
+      },
+      {
+        "name": "C",
+        "x": 8,
+        "y": 0
+      },
+      {
+        "name": "M",
+        "x": -2.615,
+        "y": 4.06
+      },
+      {
+        "name": "N",
+        "x": 3.385,
+        "y": 4.06
+      },
+      {
+        "name": "K",
+        "x": -2.742991341912505,
+        "y": 1.7874558044958913
+      },
+      {
+        "name": "L",
+        "x": 3.6892754233320213,
+        "y": 2.0155490169244503
+      },
+      {
+        "name": "O",
+        "x": 0.38499999999994905,
+        "y": 4.387122710595732
+      }
+    ],
+    "segmentLengths": {
+      "AB": 8.579469680580495,
+      "BC": 12,
+      "CA": 12.293384399749323,
+      "AM": 4.289734840290247,
+      "MB": 4.289734840290247,
+      "AN": 6.1466921998746615,
+      "NC": 6.1466921998746615,
+      "MC": 11.364938407224212,
+      "BN": 8.42744474915143,
+      "AK": 6.5107801981571285,
+      "KC": 10.890677721126133,
+      "AL": 7.839871969322616,
+      "BL": 7.949049903949715,
+      "BK": 2.185193130945862,
+      "CL": 4.758653613735134,
+      "NL": 2.0669696068018175,
+      "MK": 2.2761456245425027,
+      "KL": 6.436309676579061,
+      "OM": 3.017782176994754,
+      "ON": 3.0177821769948547,
+      "OA": 4.067259256274424,
+      "OK": 4.067259256274426,
+      "OL": 4.067259256274425,
+      "MN": 6
+    },
+    "angleDegrees": {
+      "KBA": 16.280179549911967,
+      "ACL": 16.280179549912038,
+      "LBK": 40.19543251425802,
+      "LNC": 40.195432514260375,
+      "LCK": 15.612668315255933,
+      "BMK": 15.612668315256029
+    }
+  },
+  "geometry": {
+    "circles": {
+      "omega": {
+        "center": {
+          "x": 0.38499999999994905,
+          "y": 4.387122710595732
+        },
+        "radius": 4.067259256274424
+      }
+    }
+  },
+  "viewBounds": [
+    -5.5600000000000005,
+    9.56,
+    -1.1908090165649217,
+    9.645190983435079
+  ],
+  "roundtrip": {
+    "zipSignature": true,
+    "loaded": true,
+    "objectCount": 62,
+    "missing": [],
+    "undefined": []
+  },
+  "finalObjects": [
+    {
+      "name": "A",
+      "type": "point",
+      "defined": true,
+      "visible": true,
+      "command": "(-1.23, 8.12)",
+      "value": "A = (-1.23, 8.12)",
+      "x": -1.23,
+      "y": 8.12
+    },
+    {
+      "name": "B",
+      "type": "point",
+      "defined": true,
+      "visible": true,
+      "command": "(-4, 0)",
+      "value": "B = (-4, 0)",
+      "x": -4,
+      "y": 0
+    },
+    {
+      "name": "C",
+      "type": "point",
+      "defined": true,
+      "visible": true,
+      "command": "(8, 0)",
+      "value": "C = (8, 0)",
+      "x": 8,
+      "y": 0
+    },
+    {
+      "name": "M",
+      "type": "point",
+      "defined": true,
+      "visible": true,
+      "command": "Midpoint[A, B]",
+      "value": "M = (-2.615, 4.06)",
+      "x": -2.615,
+      "y": 4.06
+    },
+    {
+      "name": "N",
+      "type": "point",
+      "defined": true,
+      "visible": true,
+      "command": "Midpoint[A, C]",
+      "value": "N = (3.385, 4.06)",
+      "x": 3.385,
+      "y": 4.06
+    },
+    {
+      "name": "tAlpha",
+      "type": "angle",
+      "defined": true,
+      "visible": false,
+      "command": "16.280179549912°",
+      "value": "tAlpha = 16.280179549912°"
+    },
+    {
+      "name": "tBeta",
+      "type": "angle",
+      "defined": true,
+      "visible": false,
+      "command": "40.195432514258°",
+      "value": "tBeta = 40.195432514258°"
+    },
+    {
+      "name": "tGamma",
+      "type": "angle",
+      "defined": true,
+      "visible": false,
+      "command": "15.612668315256°",
+      "value": "tGamma = 15.612668315256°"
+    },
+    {
+      "name": "A_B_alpha",
+      "type": "point",
+      "defined": true,
+      "visible": false,
+      "command": "Rotate[A, -tAlpha, B]",
+      "value": "A_B_alpha = (0.9352469205414, 7.017879867402)",
+      "x": 0.9352469205414256,
+      "y": 7.017879867402004
+    },
+    {
+      "name": "B_M_gamma",
+      "type": "point",
+      "defined": true,
+      "visible": false,
+      "command": "Rotate[B, tGamma, M]",
+      "value": "B_M_gamma = (-2.8562187132218, -0.2229474118172)",
+      "x": -2.8562187132218,
+      "y": -0.2229474118171959
+    },
+    {
+      "name": "ray_BK",
+      "type": "ray",
+      "defined": true,
+      "visible": false,
+      "command": "Ray[B, A_B_alpha]",
+      "value": "ray_BK: -7.017879867402x + 4.9352469205414y = 28.071519469608"
+    },
+    {
+      "name": "ray_MK",
+      "type": "ray",
+      "defined": true,
+      "visible": false,
+      "command": "Ray[M, B_M_gamma]",
+      "value": "ray_MK: 4.2829474118172x - 0.2412187132218y = -12.1792554575825"
+    },
+    {
+      "name": "K",
+      "type": "point",
+      "defined": true,
+      "visible": true,
+      "command": "Intersect[ray_BK, ray_MK]",
+      "value": "K = (-2.7429913419125, 1.7874558044959)",
+      "x": -2.742991341912505,
+      "y": 1.7874558044958913
+    },
+    {
+      "name": "A_C_alpha",
+      "type": "point",
+      "defined": true,
+      "visible": false,
+      "command": "Rotate[A, tAlpha, C]",
+      "value": "A_C_alpha = (-3.1362159476094, 5.2069179336927)",
+      "x": -3.136215947609365,
+      "y": 5.206917933692717
+    },
+    {
+      "name": "K_B_beta",
+      "type": "point",
+      "defined": true,
+      "visible": false,
+      "command": "Rotate[K, -tBeta, B]",
+      "value": "K_B_beta = (-1.8862188513036, 0.5540742503931)",
+      "x": -1.8862188513035831,
+      "y": 0.5540742503930639
+    },
+    {
+      "name": "ray_CL",
+      "type": "ray",
+      "defined": true,
+      "visible": false,
+      "command": "Ray[C, A_C_alpha]",
+      "value": "ray_CL: -5.2069179336927x - 11.1362159476094y = -41.6553434695417"
+    },
+    {
+      "name": "ray_BL",
+      "type": "ray",
+      "defined": true,
+      "visible": false,
+      "command": "Ray[B, K_B_beta]",
+      "value": "ray_BL: -0.5540742503931x + 2.1137811486964y = 2.2162970015723"
+    },
+    {
+      "name": "L",
+      "type": "point",
+      "defined": true,
+      "visible": true,
+      "command": "Intersect[ray_CL, ray_BL]",
+      "value": "L = (3.689275423332, 2.0155490169245)",
+      "x": 3.6892754233320213,
+      "y": 2.0155490169244503
+    },
+    {
+      "name": "C_N_beta",
+      "type": "point",
+      "defined": true,
+      "visible": false,
+      "command": "Rotate[C, -tBeta, N]",
+      "value": "C_N_beta = (4.2898451245023, -2.0197269922805)",
+      "x": 4.28984512450228,
+      "y": -2.019726992280529
+    },
+    {
+      "name": "ray_NL",
+      "type": "ray",
+      "defined": true,
+      "visible": false,
+      "command": "Ray[N, C_N_beta]",
+      "value": "ray_NL: 6.0797269922805x + 0.9048451245023y = 24.2535470743488"
+    },
+    {
+      "name": "L_C_gamma",
+      "type": "point",
+      "defined": true,
+      "visible": false,
+      "command": "Rotate[L, tGamma, C]",
+      "value": "L_C_gamma = (3.3058775697358, 0.7810242155046)",
+      "x": 3.3058775697357623,
+      "y": 0.7810242155046149
+    },
+    {
+      "name": "ray_CK",
+      "type": "ray",
+      "defined": true,
+      "visible": false,
+      "command": "Ray[C, L_C_gamma]",
+      "value": "ray_CK: -0.7810242155046x - 4.6941224302642y = -6.2481937240369"
+    },
+    {
+      "name": "side_AB",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[A, B]",
+      "value": "side_AB = 8.5794696805805"
+    },
+    {
+      "name": "side_BC",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[B, C]",
+      "value": "side_BC = 12"
+    },
+    {
+      "name": "side_CA",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[C, A]",
+      "value": "side_CA = 12.2933843997493"
+    },
+    {
+      "name": "seg_MC",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[M, C]",
+      "value": "seg_MC = 11.3649384072242"
+    },
+    {
+      "name": "seg_BN",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[B, N]",
+      "value": "seg_BN = 8.4274447491514"
+    },
+    {
+      "name": "seg_AK",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[A, K]",
+      "value": "seg_AK = 6.5107801981571"
+    },
+    {
+      "name": "seg_KC",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[K, C]",
+      "value": "seg_KC = 10.8906777211261"
+    },
+    {
+      "name": "seg_AL",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[A, L]",
+      "value": "seg_AL = 7.8398719693226"
+    },
+    {
+      "name": "seg_BL",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[B, L]",
+      "value": "seg_BL = 7.9490499039497"
+    },
+    {
+      "name": "seg_BK",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[B, K]",
+      "value": "seg_BK = 2.1851931309459"
+    },
+    {
+      "name": "seg_CL",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[C, L]",
+      "value": "seg_CL = 4.7586536137351"
+    },
+    {
+      "name": "seg_NL",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[N, L]",
+      "value": "seg_NL = 2.0669696068018"
+    },
+    {
+      "name": "seg_MK",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[M, K]",
+      "value": "seg_MK = 2.2761456245425"
+    },
+    {
+      "name": "seg_KL",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[K, L]",
+      "value": "seg_KL = 6.4363096765791"
+    },
+    {
+      "name": "omega",
+      "type": "circle",
+      "defined": true,
+      "visible": true,
+      "command": "Circle[A, K, L]",
+      "value": "omega: (x - 0.3849999999999)² + (y - 4.3871227105957)² = 16.54259785775"
+    },
+    {
+      "name": "O",
+      "type": "point",
+      "defined": true,
+      "visible": true,
+      "command": "Center[omega]",
+      "value": "O = (0.3849999999999, 4.3871227105957)",
+      "x": 0.38499999999994905,
+      "y": 4.387122710595732
+    },
+    {
+      "name": "seg_OM",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[O, M]",
+      "value": "seg_OM = 3.0177821769948"
+    },
+    {
+      "name": "seg_ON",
+      "type": "segment",
+      "defined": true,
+      "visible": true,
+      "command": "Segment[O, N]",
+      "value": "seg_ON = 3.0177821769949"
+    },
+    {
+      "name": "ang_KBA",
+      "type": "angle",
+      "defined": true,
+      "visible": true,
+      "command": "Angle[K, B, A]",
+      "value": "ang_KBA = 16.280179549912°"
+    },
+    {
+      "name": "ang_ACL",
+      "type": "angle",
+      "defined": true,
+      "visible": true,
+      "command": "Angle[A, C, L]",
+      "value": "ang_ACL = 16.280179549912°"
+    },
+    {
+      "name": "ang_LBK",
+      "type": "angle",
+      "defined": true,
+      "visible": true,
+      "command": "Angle[L, B, K]",
+      "value": "ang_LBK = 40.195432514258°"
+    },
+    {
+      "name": "ang_LNC",
+      "type": "angle",
+      "defined": true,
+      "visible": true,
+      "command": "Angle[L, N, C]",
+      "value": "ang_LNC = 40.1954325142604°"
+    },
+    {
+      "name": "ang_LCK",
+      "type": "angle",
+      "defined": true,
+      "visible": true,
+      "command": "Angle[L, C, K]",
+      "value": "ang_LCK = 15.6126683152559°"
+    },
+    {
+      "name": "ang_BMK",
+      "type": "angle",
+      "defined": true,
+      "visible": true,
+      "command": "Angle[B, M, K]",
+      "value": "ang_BMK = 15.612668315256°"
+    },
+    {
+      "name": "poly_BMC",
+      "type": "triangle",
+      "defined": true,
+      "visible": false,
+      "command": "Polygon[B, M, C]",
+      "value": "poly_BMC = 24.36"
+    },
+    {
+      "name": "c",
+      "type": "segment",
+      "defined": true,
+      "visible": false,
+      "command": "Segment[B, M, poly_BMC]",
+      "value": "c = 4.2897348402902"
+    },
+    {
+      "name": "b",
+      "type": "segment",
+      "defined": true,
+      "visible": false,
+      "command": "Segment[M, C, poly_BMC]",
+      "value": "b = 11.3649384072242"
+    },
+    {
+      "name": "m",
+      "type": "segment",
+      "defined": true,
+      "visible": false,
+      "command": "Segment[C, B, poly_BMC]",
+      "value": "m = 12"
+    },
+    {
+      "name": "poly_BNC",
+      "type": "triangle",
+      "defined": true,
+      "visible": false,
+      "command": "Polygon[B, N, C]",
+      "value": "poly_BNC = 24.36"
+    },
+    {
+      "name": "c_1",
+      "type": "segment",
+      "defined": true,
+      "visible": false,
+      "command": "Segment[B, N, poly_BNC]",
+      "value": "c_1 = 8.4274447491514"
+    },
+    {
+      "name": "b_1",
+      "type": "segment",
+      "defined": true,
+      "visible": false,
+      "command": "Segment[N, C, poly_BNC]",
+      "value": "b_1 = 6.1466921998747"
+    },
+    {
+      "name": "n",
+      "type": "segment",
+      "defined": true,
+      "visible": false,
+      "command": "Segment[C, B, poly_BNC]",
+      "value": "n = 12"
+    },
+    {
+      "name": "poly_ABL",
+      "type": "triangle",
+      "defined": true,
+      "visible": false,
+      "command": "Polygon[A, B, L]",
+      "value": "poly_ABL = 28.4269228302876"
+    },
+    {
+      "name": "l",
+      "type": "segment",
+      "defined": true,
+      "visible": false,
+      "command": "Segment[A, B, poly_ABL]",
+      "value": "l = 8.5794696805805"
+    },
+    {
+      "name": "a",
+      "type": "segment",
+      "defined": true,
+      "visible": false,
+      "command": "Segment[B, L, poly_ABL]",
+      "value": "a = 7.9490499039497"
+    },
+    {
+      "name": "b_2",
+      "type": "segment",
+      "defined": true,
+      "visible": false,
+      "command": "Segment[L, A, poly_ABL]",
+      "value": "b_2 = 7.8398719693226"
+    },
+    {
+      "name": "poly_AKC",
+      "type": "triangle",
+      "defined": true,
+      "visible": false,
+      "command": "Polygon[A, K, C]",
+      "value": "poly_AKC = 35.3674363104162"
+    },
+    {
+      "name": "c_2",
+      "type": "segment",
+      "defined": true,
+      "visible": false,
+      "command": "Segment[A, K, poly_AKC]",
+      "value": "c_2 = 6.5107801981571"
+    },
+    {
+      "name": "a_1",
+      "type": "segment",
+      "defined": true,
+      "visible": false,
+      "command": "Segment[K, C, poly_AKC]",
+      "value": "a_1 = 10.8906777211261"
+    },
+    {
+      "name": "k",
+      "type": "segment",
+      "defined": true,
+      "visible": false,
+      "command": "Segment[C, A, poly_AKC]",
+      "value": "k = 12.2933843997493"
+    }
+  ],
+  "consoleErrors": []
+}
